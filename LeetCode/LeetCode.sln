@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeTests", "LeetCodeTests\LeetCodeTests.csproj", "{88279472-D99C-4004-87FE-54F9BA95BC3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

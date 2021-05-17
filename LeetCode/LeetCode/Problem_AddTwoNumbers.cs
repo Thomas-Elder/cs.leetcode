@@ -15,13 +15,9 @@ namespace LeetCode
             ListNode node = new ListNode();
             ListNode head = node;
 
-            int i = 1;
-
-            // While either list is not null, we still a number to handle
+            // While either list is not null, we still have a number to handle
             while (l1 != null || l2 != null)
             { 
-                Console.WriteLine("{0}", i++);
-
                 // Get the value of this node, or use zero if it's null
                 a = l1 != null ? l1.val : 0;
                 b = l2 != null ? l2.val : 0;
@@ -43,7 +39,7 @@ namespace LeetCode
                 node.val = c;
 
                 // If there's another node in either list, we'll need another result node
-                if (l1.next != null || l2.next != null)
+                if (l1 != null && l1.next != null || l2 != null && l2.next != null)
                 {
                     node.next = new ListNode();
                     node = node.next;

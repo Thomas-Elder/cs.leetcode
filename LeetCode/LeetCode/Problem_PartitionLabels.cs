@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LeetCode
 {
@@ -31,9 +29,32 @@ namespace LeetCode
         /// <returns></returns>
         public IList<int> PartitionLabels(string s)
         {
-            List<int> subStringLength = new List<int>(500);
+            List<int> subStringLengths = new List<int>(500);
+            List<char> currentSubString = new List<char>(500);
 
-            return subStringLength;
+            char[] sCharArray = s.ToCharArray();
+
+            // For each character in the array
+            foreach(char c in sCharArray)
+            {
+
+                // If it's not in the current substring... 
+                if (!currentSubString.Contains(c))
+                {
+                    // Add it in
+                    currentSubString.Add(c);
+                } else
+                {
+                    // Else add the currentSubString length to subStringLengths
+                    subStringLengths.Add(currentSubString.Count);
+                    currentSubString.Clear();
+                    currentSubString.Add(c);
+                }
+            }
+
+            subStringLengths.Add(currentSubString.Count);
+
+            return subStringLengths;
         }
     }
 }

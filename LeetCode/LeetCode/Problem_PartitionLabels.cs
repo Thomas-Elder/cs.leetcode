@@ -24,6 +24,16 @@ namespace LeetCode
     /// </summary>
     public class Problem_PartitionLabels
     {
+        /// <summary>
+        /// Returns a list of integers representing the length substrings with non-repeating characters.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public IList<int> PartitionLabels(string s)
+        {
+            List<int> subStringLength = new List<int>(500);
 
+            return subStringLength;
+        }
     }
 }

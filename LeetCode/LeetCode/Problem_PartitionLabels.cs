@@ -5,6 +5,8 @@ namespace LeetCode
 {
     /// <summary>
     /// A class for solving Leet Code problem 763. Partition Labels
+    /// </summary>
+    /// 
     /// A string s of lowercase English letters is given.
     /// We want to partition this string into as many parts as possible so that each letter appears 
     /// in at most one part, and return a list of integers representing the size of these parts.
@@ -20,7 +22,6 @@ namespace LeetCode
     /// Note:
     /// s will have length in range [1, 500].
     /// s will consist of lowercase English letters ('a' to 'z') only.
-    /// </summary>
     public class Problem_PartitionLabels
     {
         /// <summary>

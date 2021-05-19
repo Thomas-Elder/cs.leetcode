@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LeetCode
 {
@@ -36,7 +37,34 @@ namespace LeetCode
         /// <returns></returns>
         public int [][] Merge(int [][] intervals)
         {
-            int[][] result = new int [1][1];
+            int[][] result = new int [intervals.Length][];
+            int resultIndex = 0;
+
+            // Initialise the result array
+            for (int i = 0; i < intervals.Length; i++)
+                result[i] = new int[2];
+
+            // Loop over each interval in intervals
+            for (int i = 0; i < intervals.Length; i++)
+            {
+                int end = i == intervals.Length - 1 ? i : i + 1;
+
+                if (intervals[i][1] >= intervals[end][0])
+                {
+                    result[resultIndex][0] = intervals[i][0];
+                    result[resultIndex][1] = intervals[end][1];
+                    resultIndex++;
+                    i++;
+                } else
+                {
+                    result[resultIndex][0] = intervals[i][0];
+                    result[resultIndex][1] = intervals[i][1];
+                    resultIndex++;
+                }
+            }
+
+            // Need to prune unneeded arrays from result
+            result = result.Where(element => element[0] != 0).ToArray();
 
             return result;
         }

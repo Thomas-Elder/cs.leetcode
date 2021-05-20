@@ -1,10 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LeetCode;
+using Problems;
+using Utility;
 
-namespace LeetCodeTests
+namespace Problems.Tests
 {
     [TestClass]
-    public class Problem_AddTwoNumbersTests
+    public class AddTwoNumbersTests
     {
         [TestMethod]
         public void Add_WhenGivenTwoListNodes_ReturnsLinkedListWithCorrectLength()
@@ -22,7 +23,7 @@ namespace LeetCodeTests
             int actual = 0;
 
             // Act
-            ListNode result = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode result = AddTwoNumbers.Add(l1, l2);
             
             while (result != null)
             {
@@ -50,7 +51,7 @@ namespace LeetCodeTests
             int i = 0;
 
             // Act
-            ListNode actual = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode actual = AddTwoNumbers.Add(l1, l2);
 
             // Assert
             while (actual != null)
@@ -76,7 +77,7 @@ namespace LeetCodeTests
             int actual = 0;
 
             // Act
-            ListNode result = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode result = AddTwoNumbers.Add(l1, l2);
 
             while (result != null)
             {
@@ -104,7 +105,7 @@ namespace LeetCodeTests
             int i = 0;
 
             // Act
-            ListNode actual = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode actual = AddTwoNumbers.Add(l1, l2);
 
             // Assert
             while (actual != null)
@@ -129,7 +130,7 @@ namespace LeetCodeTests
             int actual = 0;
 
             // Act
-            ListNode result = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode result = AddTwoNumbers.Add(l1, l2);
 
             while (result != null)
             {
@@ -156,7 +157,7 @@ namespace LeetCodeTests
             int i = 0;
 
             // Act
-            ListNode actual = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode actual = AddTwoNumbers.Add(l1, l2);
 
             // Assert
             while (actual != null)
@@ -180,7 +181,7 @@ namespace LeetCodeTests
             int i = 0;
 
             // Act
-            ListNode actual = Problem_AddTwoNumbers.Add(l1, l2);
+            ListNode actual = AddTwoNumbers.Add(l1, l2);
 
             // Assert
             while (actual != null)

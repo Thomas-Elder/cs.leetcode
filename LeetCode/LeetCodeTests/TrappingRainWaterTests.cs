@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LeetCode;
+using Problems;
 
-namespace LeetCodeTests
+namespace Problems.Tests
 {
     [TestClass]
-    public class Problem_TrappingRainWaterTests
+    public class TrappingRainWaterTests
     {
-        Problem_TrappingRainWater rainGauge = new Problem_TrappingRainWater();
+        TrappingRainWater rainGauge = new TrappingRainWater();
 
         [TestMethod]
         public void Rainfall_WithFlatTerrainAllZeros_ReturnsZero()

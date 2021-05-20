@@ -4,7 +4,7 @@ using LeetCode;
 namespace LeetCodeTests
 {
     [TestClass]
-    public class RainGaugeTwoTests
+    public class Problem_TrappingRainWaterTests
     {
         Problem_TrappingRainWater rainGauge = new Problem_TrappingRainWater();
 

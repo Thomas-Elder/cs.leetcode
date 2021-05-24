@@ -4,7 +4,7 @@ using Problems;
 namespace Problems.Tests
 {
     [TestClass]
-    public class TrappingRainWaterTests
+    public class TrappingRainWater3Tests
     {
         TrappingRainWater3 rainGauge = new TrappingRainWater3();
 
@@ -135,14 +135,35 @@ namespace Problems.Tests
         }
 
         [TestMethod]
-        public void LandToTheLeft_WithOneHeightWalls_ReturnsOne()
+        public void Rainfall_WithLargeLCExample_ReturnsZero()
         {
             // Arrange
-            bool[,] map = new bool[,] { {false,false,false }, {true,false,true }, {true,true,true } };
+            int[] terrain = new int [981];
+
+            int i;
+            int j = 0;
+
+            for (i = 980; i >= 0; i--)
+                terrain[j++] = i;
+
+            int expected = 0;
+
+            // Act
+            int actual = rainGauge.Trap(terrain);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void LandToTheLeft_WithOneHeightWalls_ReturnsTrue()
+        {
+            // Arrange
+            int[] height = {1, 0, 1};
             bool expected = true;
 
             // Act
-            bool actual = rainGauge.LandToTheLeft(map, 1, 1);
+            bool actual = rainGauge.LandToTheLeft(height, 0, 1);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -152,11 +173,11 @@ namespace Problems.Tests
         public void LandToTheLeft_WithNoWalls_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { false, false, false }, { true, true, true } };
+            int[] height = { 0, 0, 0 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheLeft(map, 1, 1);
+            bool actual = rainGauge.LandToTheLeft(height, 0, 1);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -166,11 +187,11 @@ namespace Problems.Tests
         public void LandToTheRight_WithNoWalls_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { false, false, false }, { true, true, true } };
+            int[] height = { 0, 0, 0 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheRight(map, 1, 1);
+            bool actual = rainGauge.LandToTheRight(height, 0, 1);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -180,11 +201,11 @@ namespace Problems.Tests
         public void LandToTheLeft_WithOnlyOneWall_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { false, false, true }, { true, true, true } };
+            int[] height = { 0, 0, 1 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheLeft(map, 1, 1);
+            bool actual = rainGauge.LandToTheLeft(height, 0, 1);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -194,11 +215,11 @@ namespace Problems.Tests
         public void LandToTheRight_WithOnlyOneWall_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { true, false, false }, { true, true, true } };
+            int[] height = { 1, 0, 0 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheRight(map, 1, 1);
+            bool actual = rainGauge.LandToTheRight(height, 0, 1);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -208,11 +229,11 @@ namespace Problems.Tests
         public void LandToTheLeft_WithCoordOfLandAndNoOtherLandToLeft_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { false, false, true }, { true, true, true } };
+            int[] height = { 0, 0, 1 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheLeft(map, 1, 2);
+            bool actual = rainGauge.LandToTheLeft(height, 1, 2);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -222,11 +243,11 @@ namespace Problems.Tests
         public void LandToTheRight_WithCoordOfLandAndNoOtherLandToRight_ReturnsFalse()
         {
             // Arrange
-            bool[,] map = new bool[,] { { false, false, false }, { true, false, false }, { true, true, true } };
+            int[] height = { 1, 0, 0 };
             bool expected = false;
 
             // Act
-            bool actual = rainGauge.LandToTheLeft(map, 1, 0);
+            bool actual = rainGauge.LandToTheLeft(height, 1, 0);
 
             // Assert
             Assert.AreEqual(expected, actual);

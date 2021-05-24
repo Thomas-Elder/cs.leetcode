@@ -34,6 +34,9 @@ namespace Problems
         /// <returns>An integer representing the amount of rain trapped by this terrain</returns>
         public int Trap(int[] height)
         {
+            if (height.Length == 0)
+                return 0;
+
             int rainfall = 0;
 
             for (int row = 0; row < height.Max(); row++)

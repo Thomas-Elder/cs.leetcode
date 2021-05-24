@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 
 namespace Problems
 {
@@ -38,7 +36,60 @@ namespace Problems
         {
             int rainfall = 0;
 
+            for (int row = 0; row < height.Max(); row++)
+            {
+                for (int column = 0; column < height.Length; column++)
+                {
+                    if (height[column] <= row && LandToTheLeft(height, row, column) && LandToTheRight(height, row, column))
+                    {
+                        rainfall++;
+                    }
+                }
+            }
+            
             return rainfall;
+        }
+
+        /// <summary>
+        /// Determines if there is land to the left of the specified co-ords
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public bool LandToTheLeft(int [] height, int row, int column)
+        {
+            if (column > 0)
+            {
+                for (int i = column - 1; i >= 0; i--)
+                {
+                    if (height[i] > row)
+                        return true;
+                }
+            } 
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determines if there is land to the right of the specified co-ords
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public bool LandToTheRight(int[] height, int row, int column)
+        {
+            if (column < height.Length - 1)
+            {
+                for (int i = column + 1; i < height.Length; i++)
+                {
+                    if (height[i] > row)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }

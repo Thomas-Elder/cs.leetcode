@@ -37,29 +37,35 @@ namespace Problems
         /// <returns>An integer representing the amount of rain trapped by this terrain</returns>
         public int Trap(int[] height)
         {
-            // Handle the edge with care
-            if (height.Length == 0)
-                return 0;
-
             int rainfall = 0;
 
+            // Handle the edge with care
+            if (height.Length == 0)
+                return rainfall;
+
+            // First find the max of the array, and it's index, we'll use this to split the array into left and right halves.
             int max = height.Max();
             int maxIndex = Array.IndexOf(height, max);
 
+            // Set up indices for the left half
             int leftStart = 0;
             int leftEnd = maxIndex - 1;
             int leftMax = 0;
             int leftMaxIndex = 0;
 
+            // Set up indices for the right half
             int rightStart = maxIndex + 1;
             int rightEnd = height.Length - 1;
             int rightMax = 0;
             int rightMaxIndex = 0;
 
-            // Loop til leftEnd is the first index
+            // Handle the left side first!
+
+            // Loop while leftEnd is > 1
+            // If leftStart is 0, and leftEnd is 1, there isn't room to catch more water
             while (leftEnd > 1)
             {
-                // Get leftMax and Index
+                // Loop from max down to 0, to get the left-most maximum value
                 for (int i = leftEnd; i >= leftStart; i--)
                 {
                     if (height[i] > leftMax)
@@ -69,11 +75,12 @@ namespace Problems
                     }
                 }
 
-                // If leftMaxIndex isn't set, we can break, because there are no further walls to the left
+                // If leftMaxIndex hasn't been set above, we can break, because we haven't found a "wall" to the left
                 if (leftMaxIndex > leftEnd)
                     break;
 
                 // Reset leftStart to leftMaxIndex
+                // We want to work between leftMax and the previous leftMax
                 leftStart = leftMaxIndex;
 
                 // Get total land in leftStart-leftEnd
@@ -91,11 +98,15 @@ namespace Problems
                 leftMax = 0;
             }
 
-            // Loop til rightStart is the last index.
+            // On to the right hand side
+
+            // Loop til rightStart is the second last index.
+            // Again if rightStart is second last, and rightEnd is last, there isn't room to catch water.
             while (rightStart < height.Length - 1)
             {
 
-                // Get rightMax and Index
+                // Get rightMax and Index, this time we loop up from previous max, to the end to find the 
+                // right most max
                 for (int i = rightStart; i <= rightEnd; i++)
                 {
                     if (height[i] > rightMax)
@@ -105,7 +116,7 @@ namespace Problems
                     }
                 }
 
-                // If rightMaxIndex isn't set, we can break, because there are no further walls to the right
+                // If rightMaxIndex wasn't set above, we can break, because there are no further walls to the right
                 if (rightMaxIndex < rightStart)
                     break;
 

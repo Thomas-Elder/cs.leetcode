@@ -121,6 +121,20 @@ namespace Problems.Tests
         }
 
         [TestMethod]
+        public void Trap_WithFlatBottomLakeNoLeadingTrailingZeros_ReturnsFullVolume()
+        {
+            // Arrange
+            int[] terrain = { 2, 0, 0, 0, 2 };
+            int expected = 6;
+
+            // Act
+            int actual = rainGauge.Trap(terrain);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Trap_WithComplicatedTerrain_ReturnsSix()
         {
             // Arrange

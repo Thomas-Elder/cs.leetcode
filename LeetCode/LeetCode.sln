@@ -18,7 +18,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utitlity\Utility
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Tests", "Utility.Tests\Utility.Tests.csproj", "{60EBD429-66B3-4F7C-9614-5B00D6463AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceTesting", "PerformanceTesting\PerformanceTesting.csproj", "{520170A8-ECF7-4E72-8B35-91BEC88C04A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerformanceTesting", "PerformanceTesting\PerformanceTesting.csproj", "{520170A8-ECF7-4E72-8B35-91BEC88C04A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Explanations", "Explanations", "{A860306B-6CED-4D59-837A-773D22E5062F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Documents\trappingRain.xlsx = ..\..\..\..\Documents\trappingRain.xlsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

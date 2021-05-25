@@ -24,6 +24,8 @@ namespace Problems
     /// 0 <= n <= 3 * 104
     /// 0 <= height[i] <= 105
     /// 
+    /// Note:
+    /// This one passes leetcode! Snappy af too. 
     public class TrappingRainWater4
     {
 
@@ -35,72 +37,97 @@ namespace Problems
         /// <returns>An integer representing the amount of rain trapped by this terrain</returns>
         public int Trap(int[] height)
         {
+            // Handle the edge with care
+            if (height.Length == 0)
+                return 0;
+
             int rainfall = 0;
 
-            // Find the max, save the index.
             int max = height.Max();
             int maxIndex = Array.IndexOf(height, max);
 
-            // Take subArray from the left of index to the next left max
-            int[] subArray = SubArray(height, 0, maxIndex);
+            int leftStart = 0;
+            int leftEnd = maxIndex - 1;
+            int leftMax = 0;
+            int leftMaxIndex = 0;
 
-            // Find the start of the sub array, the largets value left in the subArray
-            int leftMax = subArray.Max();
-            int end = maxIndex;
-            int start = Array.IndexOf(subArray, leftMax);
-            subArray = SubArray(subArray, start, end);
+            int rightStart = maxIndex + 1;
+            int rightEnd = height.Length - 1;
+            int rightMax = 0;
+            int rightMaxIndex = 0;
 
-            while (subArray.Length > 1)
+            // Loop til leftEnd is the first index
+            while (leftEnd > 1)
             {
-                int totalArea = leftMax * subArray.Length;
-                int land = subArray.Sum();
-                rainfall += totalArea - land;
+                // Get leftMax and Index
+                for (int i = leftEnd; i >= leftStart; i--)
+                {
+                    if (height[i] > leftMax)
+                    {
+                        leftMax = height[i];
+                        leftMaxIndex = i;
+                    }
+                }
 
-                // Get next subArray
-                subArray = SubArray(subArray, 0, start - 1);
-                end = start - 1;
-                leftMax = subArray.Max();
-                start = Array.IndexOf(subArray, leftMax);
+                // If leftMaxIndex isn't set, we can break, because there are no further walls to the left
+                if (leftMaxIndex > leftEnd)
+                    break;
 
-                subArray = SubArray(subArray, start, end);
+                // Reset leftStart to leftMaxIndex
+                leftStart = leftMaxIndex;
+
+                // Get total land in leftStart-leftEnd
+                int sum = 0;
+                for (int j = leftStart; j <= leftEnd; j++)
+                    sum += height[j];
+
+                // Get total area, and subtract land from it to get rainfall
+                int totalArea = leftMax * (leftEnd - leftStart + 1);
+                rainfall += totalArea - sum;
+
+                // Reset lstart and lend, we want to shift down below leftMaxIndex
+                leftEnd = leftMaxIndex - 1;
+                leftStart = 0;
+                leftMax = 0;
             }
 
-            // Start on the right!
-            subArray = SubArray(subArray, maxIndex, subArray.Length - 1);
-
-            int rightMax = subArray.Max();
-            end = Array.LastIndexOf(subArray, rightMax);
-            start = 0;
-            subArray = SubArray(subArray, start, end);
-            // Take subArray from 0 to the lastIndexOf(max), why doesn't this work!?
-            // Because it's not deleting that last values.
-            //Array.Copy(subArray, start, subArray, 0, end);
-
-            while (subArray.Length > 1)
+            // Loop til rightStart is the last index.
+            while (rightStart < height.Length - 1)
             {
-                int totalArea = rightMax * subArray.Length;
-                int land = subArray.Sum();
-                rainfall += totalArea - land;
 
-                // Get next subArray
-                subArray = SubArray(subArray, start, subArray.Length - 1);
-                start = end + 1;
-                rightMax = subArray.Max();
-                end = Array.LastIndexOf(subArray, rightMax);
+                // Get rightMax and Index
+                for (int i = rightStart; i <= rightEnd; i++)
+                {
+                    if (height[i] > rightMax)
+                    {
+                        rightMax = height[i];
+                        rightMaxIndex = i;
+                    }
+                }
 
-                subArray = SubArray(subArray, start, end);
+                // If rightMaxIndex isn't set, we can break, because there are no further walls to the right
+                if (rightMaxIndex < rightStart)
+                    break;
+
+                // Reset rightEnd to rightMaxIndex
+                rightEnd = rightMaxIndex;
+
+                // Get total area, and subtract land from it to get rainfall
+                int sum = 0;
+                for (int j = rightStart; j <= rightEnd; j++)
+                    sum += height[j];
+
+                int totalArea = rightMax * (rightEnd - rightStart + 1);
+                rainfall += totalArea - sum;
+
+                // Reset rstart and rend, shifting past rightMaxIndex
+                rightStart = rightMaxIndex + 1;
+                rightEnd = height.Length - 1;
+                rightMax = 0;
             }
 
             return rainfall;
         }
 
-        public int [] SubArray(int [] array, int start, int end)
-        {
-            int length = end - start + 1;
-            int[] result = new int[length];
-            Array.Copy(array, start, result, 0, length);
-
-            return result;
-        }
     }
 }

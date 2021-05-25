@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problems.Tests", "LeetCodeTests\Problems.Tests.csproj", "{88279472-D99C-4004-87FE-54F9BA95BC3B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problems", "Problems\Problems.csproj", "{18514FC4-FE86-44E0-B1C7-FEE9B579FFE6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utitlity\Utility.csproj", "{9C5136C2-75CB-4C34-9509-12B15ADB8FAF}"
@@ -25,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Explanations", "Explanation
 		..\..\..\..\Documents\trappingRain.xlsx = ..\..\..\..\Documents\trappingRain.xlsx
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problems.Tests", "Problems.Tests\Problems.Tests.csproj", "{B2265AF9-B9E3-4B6B-A2F2-9D2A18316093}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +35,6 @@ Global
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3B2343-C555-4A99-B542-D5C89E47BEDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88279472-D99C-4004-87FE-54F9BA95BC3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18514FC4-FE86-44E0-B1C7-FEE9B579FFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18514FC4-FE86-44E0-B1C7-FEE9B579FFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18514FC4-FE86-44E0-B1C7-FEE9B579FFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +51,10 @@ Global
 		{520170A8-ECF7-4E72-8B35-91BEC88C04A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520170A8-ECF7-4E72-8B35-91BEC88C04A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520170A8-ECF7-4E72-8B35-91BEC88C04A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2265AF9-B9E3-4B6B-A2F2-9D2A18316093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2265AF9-B9E3-4B6B-A2F2-9D2A18316093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2265AF9-B9E3-4B6B-A2F2-9D2A18316093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2265AF9-B9E3-4B6B-A2F2-9D2A18316093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

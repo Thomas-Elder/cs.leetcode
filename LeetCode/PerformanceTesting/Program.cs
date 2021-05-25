@@ -10,8 +10,12 @@ namespace PerformanceTesting
             Console.WriteLine();
 
             TrappingRainPerformance trp = new TrappingRainPerformance();
+            Console.WriteLine();
             trp.TrappingRainWater2Performance();
+            Console.WriteLine();
             trp.TrappingRainWater3Performance();
+            Console.WriteLine();
+            trp.TrappingRainWater4Performance();
             Console.ReadLine();
         }
     }

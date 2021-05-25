@@ -24,24 +24,24 @@ namespace Problems
     /// 0 <= height[i] <= 105
     /// 
     /// Note: this works, but is too slow for the larger tests on leet code. 
-
+    ///
     public class TrappingRainWater2
     {
         /// <summary>
-        /// Takes an array of values representing terrain and returns 
-        /// the amount of rainfall trapped by that terrain. 
+        /// Takes an array of values representing height and returns 
+        /// the amount of rainfall trapped by that height. 
         /// </summary>
         /// <param name="terrain">An array of integers</param>
-        /// <returns>In integer representing the amount of rain trapped by this terrain</returns>
-        public int Rainfall(int[] terrain)
+        /// <returns>In integer representing the amount of rain trapped by this height</returns>
+        public int Trap(int[] height)
         {
             int rainfall = 0;
 
-            bool[,] map = ConvertTo2DArray(terrain);
+            bool[,] map = ConvertTo2DArray(height);
 
-            for (int i = 0; i < terrain.Max(); i++)
+            for (int i = 0; i < height.Max(); i++)
             {
-                for (int j = 0; j < terrain.Length; j++)
+                for (int j = 0; j < height.Length; j++)
                 {
                     // If i,j isn't land, and there's land to the left and right, then 
                     // it's water.
@@ -56,21 +56,21 @@ namespace Problems
         }
 
         /// <summary>
-        /// Converts the 1D terrain into a 2D map
+        /// Converts the 1D height into a 2D map
         /// </summary>
-        /// <param name="terrain">A 1 dimensional array describing the terrain height</param>
+        /// <param name="terrain">A 1 dimensional array describing the height height</param>
         /// <returns>A 2 dimensional array of boolean values</returns>
-        public bool[,] ConvertTo2DArray(int[] terrain)
+        public bool[,] ConvertTo2DArray(int[] height)
         {
-            bool[,] a = new bool[terrain.Max(), terrain.Length];
+            bool[,] a = new bool[height.Max(), height.Length];
 
-            // For each column, set a [i, j] to true (land) if we're below the value of terrain[j],
+            // For each column, set a [i, j] to true (land) if we're below the value of height[j],
             // else set to false (no land)
-            for (int j = 0; j < terrain.Length; j++)
+            for (int j = 0; j < height.Length; j++)
             {
-                for (int i = 0; i < terrain.Max(); i++)
+                for (int i = 0; i < height.Max(); i++)
                 {
-                    if (terrain[j] > i)
+                    if (height[j] > i)
                     {
                         a[i, j] = true;
                     }

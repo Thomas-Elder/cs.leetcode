@@ -29,17 +29,17 @@ namespace PerformanceTesting
             {
                 sw.Reset();
                 sw.Start();
-                trappingRainWater2.Rainfall(terrain);
+                trappingRainWater2.Trap(terrain);
                 sw.Stop();
                 averageRuntime += sw.ElapsedMilliseconds;
 
-                Console.WriteLine("Runtime for trappingRainWater2.Rainfall run {0}: {1}", k, sw.ElapsedMilliseconds);
+                Console.WriteLine("Runtime for trappingRainWater2.Trap run {0}: {1}", k, sw.ElapsedMilliseconds);
             }
 
             averageRuntime = averageRuntime / numberOfRuns;
 
             // Assert
-            Console.WriteLine("Average runtime for trappingRainWater2.Rainfall: {0}", averageRuntime);
+            Console.WriteLine("Average runtime for trappingRainWater2.Trap: {0}", averageRuntime);
         }
 
         public void TrappingRainWater3Performance()
@@ -68,13 +68,13 @@ namespace PerformanceTesting
                 sw.Stop();
                 averageRuntime += sw.ElapsedMilliseconds;
 
-                Console.WriteLine("Runtime for trappingRainWater3.Rainfall run {0}: {1}", k, sw.ElapsedMilliseconds);
+                Console.WriteLine("Runtime for trappingRainWater3.Trap run {0}: {1}", k, sw.ElapsedMilliseconds);
             }
 
             averageRuntime = averageRuntime / numberOfRuns;
 
             // Assert
-            Console.WriteLine("Average runtime for trappingRainWater3.Rainfall: {0}", averageRuntime);
+            Console.WriteLine("Average runtime for trappingRainWater3.Trap: {0}", averageRuntime);
         }
     }
 }

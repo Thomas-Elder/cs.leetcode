@@ -23,6 +23,11 @@ namespace Problems
     /// 0 <= n <= 3 * 104
     /// 0 <= height[i] <= 105
     /// 
+    /// NOTE: 
+    /// This is faster than 2, by an order of magnitude, but still not fast enough for Leet Code. This performance
+    /// increase was managed by avoiding the 2d array creation and walk, though we still kind of walk a 2d array
+    /// by looking at all heights from height.Max() down. 
+    /// 
     public class TrappingRainWater3
     {
 

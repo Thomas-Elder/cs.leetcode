@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
+using System;
 
 namespace Problems
 {
@@ -39,19 +38,69 @@ namespace Problems
             int rainfall = 0;
 
             // Find the max, save the index.
+            int max = height.Max();
+            int maxIndex = Array.IndexOf(height, max);
 
             // Take subArray from the left of index to the next left max
+            int[] subArray = SubArray(height, 0, maxIndex);
 
-            // Subtract sum(subArray) from leftMax*subArray.Length
-            // Add this to rainfall
+            // Find the start of the sub array, the largets value left in the subArray
+            int leftMax = subArray.Max();
+            int end = maxIndex;
+            int start = Array.IndexOf(subArray, leftMax);
+            subArray = SubArray(subArray, start, end);
 
-            // Take subArray from left of leftMax to next max
+            while (subArray.Length > 1)
+            {
+                int totalArea = leftMax * subArray.Length;
+                int land = subArray.Sum();
+                rainfall += totalArea - land;
 
-            // Until next max == 0
+                // Get next subArray
+                subArray = SubArray(subArray, 0, start - 1);
+                end = start - 1;
+                leftMax = subArray.Max();
+                start = Array.IndexOf(subArray, leftMax);
 
-            // Same to the right of main max.
+                subArray = SubArray(subArray, start, end);
+            }
+
+            // Start on the right!
+            subArray = SubArray(subArray, maxIndex, subArray.Length - 1);
+
+            int rightMax = subArray.Max();
+            end = Array.LastIndexOf(subArray, rightMax);
+            start = 0;
+            subArray = SubArray(subArray, start, end);
+            // Take subArray from 0 to the lastIndexOf(max), why doesn't this work!?
+            // Because it's not deleting that last values.
+            //Array.Copy(subArray, start, subArray, 0, end);
+
+            while (subArray.Length > 1)
+            {
+                int totalArea = rightMax * subArray.Length;
+                int land = subArray.Sum();
+                rainfall += totalArea - land;
+
+                // Get next subArray
+                subArray = SubArray(subArray, start, subArray.Length - 1);
+                start = end + 1;
+                rightMax = subArray.Max();
+                end = Array.LastIndexOf(subArray, rightMax);
+
+                subArray = SubArray(subArray, start, end);
+            }
 
             return rainfall;
+        }
+
+        public int [] SubArray(int [] array, int start, int end)
+        {
+            int length = end - start + 1;
+            int[] result = new int[length];
+            Array.Copy(array, start, result, 0, length);
+
+            return result;
         }
     }
 }

@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Problems;
+using Solutions;
 
-namespace Problems.Tests
+namespace Solutions.Tests
 {
     [TestClass]
     public class TrappingRainWater3Tests

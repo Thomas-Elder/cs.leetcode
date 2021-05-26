@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Problems
+namespace Solutions
 {
     /// <summary>
     ///  class for solving Leet Code problem 42. Trapping Rain Water

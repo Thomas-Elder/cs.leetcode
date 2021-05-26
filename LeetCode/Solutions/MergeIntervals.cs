@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Problems
+namespace Solutions
 {
     /// <summary>
     /// A class for solving Leet Code problem 56. Merge Intervals

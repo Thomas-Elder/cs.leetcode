@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Problems;
+using Solutions;
 using Utility;
 
-namespace Problems.Tests
+namespace Solutions.Tests
 {
     [TestClass]
     public class AddTwoNumbersTests

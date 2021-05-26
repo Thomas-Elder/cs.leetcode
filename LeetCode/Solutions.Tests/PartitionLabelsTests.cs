@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Problems;
+using Solutions;
 using System.Collections.Generic;
 
-namespace Problems.Tests
+namespace Solutions.Tests
 {
     [TestClass]
     public class PartitionLabelsTests

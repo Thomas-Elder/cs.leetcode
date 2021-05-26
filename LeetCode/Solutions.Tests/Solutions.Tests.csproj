@@ -15,8 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LeetCode\LeetCode.csproj" />
-    <ProjectReference Include="..\Problems\Problems.csproj" />
-    <ProjectReference Include="..\Utitlity\Utility.csproj" />
+    <ProjectReference Include="..\Solutions\Solutions.csproj" />
   </ItemGroup>
 
 </Project>

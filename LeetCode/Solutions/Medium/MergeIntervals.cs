@@ -23,6 +23,9 @@ namespace Solutions
     /// intervals[i].length == 2
     /// 0 <= starti <= endi <= 104
     ///
+    /// Note:
+    /// Currently doesn't handle this input
+    /// [[1,4],[0,4]]
     public class MergeIntervals
     {
         /// <summary>

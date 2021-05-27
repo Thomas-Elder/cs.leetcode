@@ -47,6 +47,8 @@ namespace Solutions
     /// 1 <= nums.length <= 12
     /// 1 <= nums[i] <= 20
     ///
+    /// Note:
+    /// Passing leetcode.
     public class SumOfAllSubsetXORTotals
     {
         /// <summary>
@@ -56,43 +58,15 @@ namespace Solutions
         /// <returns></returns>
         public int SubsetXORSum(int[] nums)
         {
-            int result = 0;
+            int result;
+            int n = nums.Length;
+            int bits = 0;
 
-            int subLength = nums.Length;
+            // Finding bitwise OR of all elements
+            for (int i = 0; i < n; ++i)
+                bits |= nums[i];
 
-            // Then get all array subsets... 
-            // Ok for each index, we'll add it's XOR to the result, then... big breath
-            // we XOR it with every index after this one.
-            for (int i = 0; i < nums.Length; i++)
-            {
-                // Add this element to the result. The XOR of a single element is just it's value.
-                result += nums[i];
-
-
-                // This loop XORs all subArrays starting at i.
-                // So that's XOR([i.. i + 1]), XOR([i.. i + 2]), XOR([i.. i + 3]), ... XOR([i.. i + nums.Length - i]);
-                while (subLength > 1)
-                {
-                    // Use this to XOR all elements in the subArray
-                    int subXOR = nums[i];
-
-                    for (int j = i + 1; j < subLength + i; j++)
-                    {
-                        subXOR ^= nums[j];
-                    }
-
-                    result += subXOR;
-                    subLength--;
-                }
-
-                subLength = nums.Length - i - 1;
-
-                // Ok then we need to XOR i with each individual index after it, starting from 2 after this one! 
-                for (int j = i + 2; j < nums.Length; j++)
-                {
-                    result += nums[i] ^ nums[j];
-                }
-            }
+            result = bits * (int)Math.Pow(2, n - 1);
 
             return result;
         }

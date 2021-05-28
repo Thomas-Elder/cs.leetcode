@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 
 namespace Solutions
 {
@@ -37,36 +38,54 @@ namespace Solutions
         /// <returns></returns>
         public int [][] Merge(int [][] intervals)
         {
-            int[][] result = new int [intervals.Length][];
-            int resultIndex = 0;
+            // Sort the intervals on the first element
+            List<int[]> result = intervals.OrderBy(element => element[0]).ToList();
+            List<int[]> temp = new List<int[]>();
+            bool overlap = true;
 
-            // Initialise the result array
-            for (int i = 0; i < intervals.Length; i++)
-                result[i] = new int[2];
-
-            // Loop over each interval in intervals
-            for (int i = 0; i < intervals.Length; i++)
+            while (overlap)
             {
-                int end = i == intervals.Length - 1 ? i : i + 1;
+                // set overlap false here
+                overlap = false;
+                bool skip = false;
 
-                if (intervals[i][1] >= intervals[end][0])
+                for (int i = 0; i < result.Count; i++)
                 {
-                    result[resultIndex][0] = intervals[i][0];
-                    result[resultIndex][1] = intervals[end][1];
-                    resultIndex++;
-                    i++;
-                } else
-                {
-                    result[resultIndex][0] = intervals[i][0];
-                    result[resultIndex][1] = intervals[i][1];
-                    resultIndex++;
+                    int start = result[i][0];
+                    int end = result[i][1];
+
+                    // For each interval, start, end
+                    // If any subsequent interval.start is less than i.end
+                    // then there is overlap.
+                    // Take i.start and interval.end
+                    for (int j = i + 1; j < result.Count; j++)
+                    {
+                        if (result[i][1] >= result[j][0])
+                        {
+                            start = result[i][0];
+                            end = result[j][1] > result[i][1] ? result[j][1] : result[i][1];
+
+                            // We've handled an overlap
+                            overlap = true;
+                            skip = true;
+                        }
+                        
+                    }
+
+                    if (skip)
+                    {
+                        skip = false;
+                        i++;
+                    }
+
+                    temp.Add(new int[] { start, end });
                 }
+
+                result = new List<int[]>(temp);
+                temp.Clear();
             }
 
-            // Need to prune unneeded arrays from result
-            result = result.Where(element => element[0] != 0).ToArray();
-
-            return result;
+            return result.ToArray();
         }
     }
 }

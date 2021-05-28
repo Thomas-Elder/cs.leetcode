@@ -90,7 +90,7 @@ namespace Solutions.Tests
 
             int[][] expected = new int[2][];
             expected[0] = new int[] { 0, 0 };
-            expected[0] = new int[] { 1, 6 };
+            expected[1] = new int[] { 1, 6 };
 
             // Act
             int[][] actual = mergeIntervals.Merge(testArray);

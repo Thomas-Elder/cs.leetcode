@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{310B2C26-C868-4D43-8C42-11454DC75742}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Documents\trappingRain.xlsx = Documents\trappingRain.xlsx
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utitlity\Utility.csproj", "{9C5136C2-75CB-4C34-9509-12B15ADB8FAF}"
@@ -15,11 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Tests", "Utility.Tests\Utility.Tests.csproj", "{60EBD429-66B3-4F7C-9614-5B00D6463AB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerformanceTesting", "PerformanceTesting\PerformanceTesting.csproj", "{520170A8-ECF7-4E72-8B35-91BEC88C04A9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Explanations", "Explanations", "{A860306B-6CED-4D59-837A-773D22E5062F}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Documents\trappingRain.xlsx = ..\..\..\..\Documents\trappingRain.xlsx
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solutions", "Solutions\Solutions.csproj", "{64388AA3-6C5E-4967-9011-20C25FC61C97}"
 EndProject

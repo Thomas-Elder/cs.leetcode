@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace Solutions
 {
@@ -39,53 +40,29 @@ namespace Solutions
         public int [][] Merge(int [][] intervals)
         {
             // Sort the intervals on the first element
-            List<int[]> result = intervals.OrderBy(element => element[0]).ToList();
-            List<int[]> temp = new List<int[]>();
-            bool overlap = true;
+            List<int[]> list = intervals.OrderBy(element => element[0]).ToList();
 
-            while (overlap)
+            // Loop through the intervals, starting at the second index as
+            // We compare to the previous index
+            // [i][0] is the start if the ith interval
+            // [i][1] is the end of the ith interval
+            for (int i = 1; i < list.Count; i++)
             {
-                // set overlap false here
-                overlap = false;
-                bool skip = false;
-
-                for (int i = 0; i < result.Count; i++)
+                // If i.start is less than i - 1.end, then these intervals overlap
+                if (list[i][0] <= list[i - 1][1])
                 {
-                    int start = result[i][0];
-                    int end = result[i][1];
+                    // Then we set [i - 1].end to the larger of [i].end and [i - 1].end
+                    list[i - 1][1] = list[i][1] > list[i - 1][1] ? list[i][1] : list[i - 1][1];
 
-                    // For each interval, start, end
-                    // If any subsequent interval.start is less than i.end
-                    // then there is overlap.
-                    // Take i.start and interval.end
-                    for (int j = i + 1; j < result.Count; j++)
-                    {
-                        if (result[i][1] >= result[j][0])
-                        {
-                            start = result[i][0];
-                            end = result[j][1] > result[i][1] ? result[j][1] : result[i][1];
-
-                            // We've handled an overlap
-                            overlap = true;
-                            skip = true;
-                        }
-                        
-                    }
-
-                    if (skip)
-                    {
-                        skip = false;
-                        i++;
-                    }
-
-                    temp.Add(new int[] { start, end });
+                    // Now we can remove i.
+                    // All the information about i is contained in i - 1;
+                    // We remove i, and decrement, so we can compare the new i - 1
+                    // interval against subsequent intervals.
+                    list.RemoveAt(i--);
                 }
-
-                result = new List<int[]>(temp);
-                temp.Clear();
             }
 
-            return result.ToArray();
+            return list.ToArray();
         }
     }
 }

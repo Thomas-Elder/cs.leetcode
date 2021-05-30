@@ -46,6 +46,61 @@ namespace Solutions.Hard
         {
             int result = 0;
 
+            // Basic flags
+            bool length = false;
+            bool upper = false;
+            bool lower = false;
+            bool number = false;
+
+            // For tracking repeating characters
+            char currentChar = ' ';
+            int currentCharCount = 0;
+
+            // Char array
+            char[] passwordChar = password.ToCharArray();
+
+            if (passwordChar.Length >= 6)
+                length = true;
+
+            foreach(char c in passwordChar)
+            {
+                // If we're looking at the currentChar, we increment the currentCharCount
+                if (c.Equals(currentChar))
+                {
+                    currentCharCount++;
+                }
+                else
+                {
+                    // Once we've got a different char, if currentCharCount is not 2, we need to split up the chars
+                    if (currentCharCount > 2)
+                    {
+                        // we can get the number of inserts
+                        // required to split up any 3-somes by dividing by two, and taking the floor
+                        // (eg 7 / 2 = 3.blahblah, so we need 3 inserts.
+                        result += (int)Math.Floor(currentCharCount / 2.0);
+                    }
+                    
+                    // Either way we now reset count and set char to this c.
+                    currentCharCount = 1;
+                    currentChar = c;
+                }
+
+                if (Char.IsUpper(c))
+                    upper = true;
+
+                if (Char.IsLower(c))
+                    lower = true;
+
+                if (Char.IsNumber(c))
+                    number = true;
+            }
+
+            if (upper && lower && number)
+            {
+                if (passwordChar.Length < 5)
+                    result += 6 - passwordChar.Length;
+            }
+
             return result;
         }
     }

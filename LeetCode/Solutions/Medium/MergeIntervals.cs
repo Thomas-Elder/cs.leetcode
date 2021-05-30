@@ -26,8 +26,7 @@ namespace Solutions
     /// 0 <= starti <= endi <= 104
     ///
     /// Note:
-    /// Currently doesn't handle this input
-    /// [[1,4],[0,4]]
+    /// Passes LC, but it's slow. I bet there's some trick to getting as zippy result.
     public class MergeIntervals
     {
         /// <summary>

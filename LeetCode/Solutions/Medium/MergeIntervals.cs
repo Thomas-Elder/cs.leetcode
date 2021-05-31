@@ -45,19 +45,27 @@ namespace Solutions
             // We compare to the previous index
             // [i][0] is the start if the ith interval
             // [i][1] is the end of the ith interval
+            // If there is only one element, we don't loop at all, and just return it. 
             for (int i = 1; i < list.Count; i++)
             {
                 // If i.start is less than i - 1.end, then these intervals overlap
+                // and we need to merge them
                 if (list[i][0] <= list[i - 1][1])
                 {
                     // Then we set [i - 1].end to the larger of [i].end and [i - 1].end
                     list[i - 1][1] = list[i][1] > list[i - 1][1] ? list[i][1] : list[i - 1][1];
 
-                    // Now we can remove i.
-                    // All the information about i is contained in i - 1;
-                    // We remove i, and decrement, so we can compare the new i - 1
+                    // [i - 1].start can stay as it is, we know it's lower because we sorted on
+                    // this value first.
+
+                    // So now, all the information about i is contained in i - 1;
+                    // We can remove i, and decrement, so we can compare the new i - 1
                     // interval against subsequent intervals.
-                    list.RemoveAt(i--);
+                    list.RemoveAt(i);
+                    i--;
+
+                    // This way we stay at the start of the array until we find an element that does not
+                    // over lap.
                 }
             }
 

@@ -51,13 +51,13 @@ namespace Solutions
             int leftStart = 0;
             int leftEnd = maxIndex - 1;
             int leftMax = 0;
-            int leftMaxIndex = 0;
+            int leftMaxIndex = maxIndex;
 
             // Set up indices for the right half
             int rightStart = maxIndex + 1;
             int rightEnd = height.Length - 1;
             int rightMax = 0;
-            int rightMaxIndex = 0;
+            int rightMaxIndex = maxIndex;
 
             // Handle the left side first!
 

@@ -68,7 +68,7 @@ namespace Solutions
                 // Loop from max down to 0, to get the left-most maximum value
                 for (int i = leftEnd; i >= leftStart; i--)
                 {
-                    if (height[i] > leftMax)
+                    if (height[i] >= leftMax)
                     {
                         leftMax = height[i];
                         leftMaxIndex = i;
@@ -109,7 +109,7 @@ namespace Solutions
                 // right most max
                 for (int i = rightStart; i <= rightEnd; i++)
                 {
-                    if (height[i] > rightMax)
+                    if (height[i] >= rightMax)
                     {
                         rightMax = height[i];
                         rightMaxIndex = i;

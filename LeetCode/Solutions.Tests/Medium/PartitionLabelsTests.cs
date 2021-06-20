@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solutions;
 using System.Collections.Generic;
 
-namespace Solutions.Tests
+namespace Solutions.Tests.Medium
 {
     [TestClass]
     public class PartitionLabelsTests

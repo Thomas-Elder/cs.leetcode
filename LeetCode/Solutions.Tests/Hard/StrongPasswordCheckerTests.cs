@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solutions.Hard;
 
-namespace Solutions.Tests
+namespace Solutions.Tests.Hard
 {
     [TestClass]
     public class StrongPasswordCheckerTests

@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solutions;
 
-namespace Solutions.Tests
+namespace Solutions.Tests.Easy
 {
     [TestClass]
     public class SumOfAllSubsetXORTotalsTests

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solutions;
 
-namespace Solutions.Tests
+namespace Solutions.Tests.Medium
 {
     [TestClass]
     public class MergeIntervalsTests

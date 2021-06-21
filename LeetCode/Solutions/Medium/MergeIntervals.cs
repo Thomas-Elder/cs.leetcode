@@ -41,31 +41,37 @@ namespace Solutions
             // Sort the intervals on the first element
             List<int[]> list = intervals.OrderBy(element => element[0]).ToList();
 
-            // Loop through the intervals, starting at the second index as
-            // We compare to the previous index
+            // Loop through the intervals.
             // [i][0] is the start if the ith interval
             // [i][1] is the end of the ith interval
-            // If there is only one element, we don't loop at all, and just return it. 
-            for (int i = 1; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                // If i.start is less than i - 1.end, then these intervals overlap
-                // and we need to merge them
-                if (list[i][0] <= list[i - 1][1])
-                {
-                    // Then we set [i - 1].end to the larger of [i].end and [i - 1].end
-                    list[i - 1][1] = list[i][1] > list[i - 1][1] ? list[i][1] : list[i - 1][1];
+                // For readability set next and curr
+                int curr = i;
+                int next = i + 1;
 
-                    // [i - 1].start can stay as it is, we know it's lower because we sorted on
+                // This means curr is the last element, so break;
+                if (next == list.Count)
+                    break;
+
+                // If curr.end is greater than/= to next.start, then these intervals overlap
+                // and we need to merge them
+                if (list[curr][1] >= list[next][0])
+                {
+                    // Then we set [curr].end to the larger of [curr].end and [next].end
+                    list[curr][1] = list[next][1] > list[curr][1] ? list[next][1] : list[curr][1];
+
+                    // [curr].start can stay as it is, we know it's lower because we sorted on
                     // this value first.
 
-                    // So now, all the information about i is contained in i - 1;
-                    // We can remove i, and decrement, so we can compare the new i - 1
+                    // So now, all the values in the range next are contained in curr;
+                    // We can remove next, and decrement, so we can compare the new curr
                     // interval against subsequent intervals.
-                    list.RemoveAt(i);
+                    list.RemoveAt(next);
                     i--;
 
                     // This way we stay at the start of the array until we find an element that does not
-                    // over lap.
+                    // over lap. Then we let it increment to work from the second interval on, etc.
                 }
             }
 

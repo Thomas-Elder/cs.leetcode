@@ -40,6 +40,16 @@ namespace Solutions.Easy
         {
             int[] result = new int[nums.Length];
 
+            int x = 0;
+            int i = 0;
+            int j = n;
+
+            while (j < nums.Length)
+            {
+                result[x++] = nums[i++];
+                result[x++] = nums[j++];
+            }
+
             return result;
         }
     }

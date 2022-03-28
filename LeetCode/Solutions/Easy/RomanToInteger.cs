@@ -55,6 +55,7 @@ namespace Solutions.Easy
     /// s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
     /// It is guaranteed that s is a valid roman numeral in the range[1, 3999].
     ///
+    /// Result - Passing, but ugly!! Fast but memory high. 
     public class RomanToInteger
     {
         public int RomanToInt(string s)
@@ -78,7 +79,42 @@ namespace Solutions.Easy
 
             for (int i = 0, j = 1; i < charArray.Length; i++, j++)
             {
-                result += map[charArray[i]];
+                // If j is after the last char, we only need to add i
+                if (j != charArray.Length)
+                {
+                    // If j == v or x, and i == i, then we want to subtract it... 
+                    if ((charArray[j] == 'V' || charArray[j] == 'X') && charArray[i] == 'I')
+                    {
+                        result += map[charArray[j]] - map[charArray[i]];
+                        i++;
+                        j++;
+                    }
+
+                    // If j == L or C, and i == X, then we want to subtract it... 
+                    else if ((charArray[j] == 'L' || charArray[j] == 'C') && charArray[i] == 'X')
+                    {
+                        result += map[charArray[j]] - map[charArray[i]];
+                        i++;
+                        j++;
+                    }
+
+                    // If j == D or M, and i == C, then we want to subtract it... 
+                    else if ((charArray[j] == 'D' || charArray[j] == 'M') && charArray[i] == 'C')
+                    {
+                        result += map[charArray[j]] - map[charArray[i]];
+                        i++;
+                        j++;
+                    }
+
+                    else
+                    {
+                        result += map[charArray[i]];
+                    }
+                }
+                else
+                {
+                    result += map[charArray[i]];
+                }
             }
 
             return result;

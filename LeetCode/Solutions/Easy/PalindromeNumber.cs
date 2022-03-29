@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Solutions.Easy
 {
     /// <summary>
-    ///  class for solving Leetcode problem 9. Palindrome Number
+    /// A class for solving Leetcode problem 9. Palindrome Number
     /// </summary>
     /// Given an integer x, return true if x is palindrome integer.
     /// 

@@ -45,9 +45,8 @@ namespace Solutions.Hard
         public int StepsToChange(string password)
         {
             int result = 0;
-
+            
             // Basic flags
-            bool length = false;
             bool upper = false;
             bool lower = false;
             bool number = false;
@@ -55,14 +54,12 @@ namespace Solutions.Hard
             // For tracking repeating characters
             char currentChar = ' ';
             int currentCharCount = 0;
+            int repeatingCharacterSeparators = 0;
 
             // Char array
             char[] passwordChar = password.ToCharArray();
 
-            if (passwordChar.Length >= 6)
-                length = true;
-
-            foreach(char c in passwordChar)
+            foreach (char c in passwordChar)
             {
                 // If we're looking at the currentChar, we increment the currentCharCount
                 if (c.Equals(currentChar))
@@ -71,20 +68,22 @@ namespace Solutions.Hard
                 }
                 else
                 {
-                    // Once we've got a different char, if currentCharCount is not 2, we need to split up the chars
+                    // Once we've got a different char, if currentCharCount is greater than 2, then we need to break up 
+                    // a three some by inserting some characters.
                     if (currentCharCount > 2)
                     {
-                        // we can get the number of inserts
-                        // required to split up any 3-somes by dividing by two, and taking the floor
+                        // We can get the number of inserts required to split up any 3-somes by dividing by two,
+                        // and taking the floor of the result... 
                         // (eg 7 / 2 = 3.blahblah, so we need 3 inserts.
-                        result += (int)Math.Floor(currentCharCount / 2.0);
+                        repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 2.0);
                     }
-                    
+
                     // Either way we now reset count and set char to this c.
                     currentCharCount = 1;
                     currentChar = c;
                 }
 
+                // Check if this character is upper/lower/number and set flag to true.
                 if (Char.IsUpper(c))
                     upper = true;
 
@@ -95,11 +94,24 @@ namespace Solutions.Hard
                     number = true;
             }
 
-            if (upper && lower && number)
+            // If the last 3+ characters were identical then we need to handle the splitting of them here:
+            if (currentCharCount > 2)
             {
-                if (passwordChar.Length < 5)
-                    result += 6 - passwordChar.Length;
+                repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 2.0);
             }
+
+            // How many characters required to reach the length requirement...
+            int lengthRequired = 6 - passwordChar.Length;
+
+            // How many characters required to meet the special character requirement... 
+            int charactersRequired = 0;
+            charactersRequired += upper ? 0 : 1;
+            charactersRequired += lower ? 0 : 1;
+            charactersRequired += number ? 0 : 1;
+
+            var toAdd = Math.Max(charactersRequired, Math.Max(lengthRequired, repeatingCharacterSeparators));
+
+            result += toAdd;
 
             return result;
         }

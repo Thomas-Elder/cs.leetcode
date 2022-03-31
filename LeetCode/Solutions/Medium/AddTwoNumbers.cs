@@ -1,6 +1,6 @@
 ﻿using Utility;
 
-namespace Solutions
+namespace Solutions.Medium
 {
     /// <summary>
     /// A class for solving Leet Code problem 2. Add Two Numbers

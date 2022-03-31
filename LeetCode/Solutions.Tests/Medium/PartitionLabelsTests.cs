@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solutions;
+using Solutions.Medium;
 using System.Collections.Generic;
 
 namespace Solutions.Tests.Medium

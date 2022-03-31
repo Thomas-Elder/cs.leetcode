@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Solutions
+namespace Solutions.Medium
 {
     /// <summary>
     /// A class for solving Leet Code problem 56. Merge Intervals

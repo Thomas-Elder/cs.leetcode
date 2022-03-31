@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Solutions
+namespace Solutions.Medium
 {
     /// <summary>
     /// A class for solving Leet Code problem 763. Partition Labels

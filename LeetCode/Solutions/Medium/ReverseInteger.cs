@@ -35,7 +35,28 @@ namespace Solutions.Medium
 
         public int Reverse(int x)
         {
-            return x;
+            // convert to string? 
+            var xCharArray = x.ToString().ToCharArray();
+            var resultCharArray = new char[xCharArray.Length];
+
+            int i = 0, j = xCharArray.Length - 1;
+
+            if (xCharArray[0] == '-')
+            {
+                resultCharArray[0] = '-';
+                i++;
+            }
+
+            while (i < xCharArray.Length)
+            {
+                resultCharArray[j--] = xCharArray[i++];
+            }
+
+            var result = 0;
+
+            int.TryParse(resultCharArray, out result);
+
+            return result;
         }
     }
 }

@@ -34,12 +34,21 @@ namespace Solutions.Medium
     /// This runs on leetcode but Time Limit Exceeded!!! 
     public class DivideTwoIntegers
     {
+        /// <summary>
+        /// Divides the dividend by the divisor, returning a truncated quotient.
+        /// </summary>
+        /// A bit of a brute force approach, this basically adds the divisor to itself until the total is 
+        /// larger than the dividend, and counts how many times it needs to do that. 
+        /// It's slow and at the moment LeetCode complains about the speed, so another approach is needed. 
+        /// <param name="dividend"></param>
+        /// <param name="divisor"></param>
+        /// <returns></returns>
         public int Divide(int dividend, int divisor)
         {
             // Convert to longs, so we don't have to deal with the int.minValue edge case
             long longDividend = dividend;
             long longDivisor = divisor;
-            
+
             // Figure out if we need the answer to be negative.
             bool negative = longDividend < 0 ^ longDivisor < 0 ? true : false;
 
@@ -56,7 +65,7 @@ namespace Solutions.Medium
                 total = total + longDivisor;
                 quotient++;
             }
-           
+
             // And factor in the negativity
             quotient = negative ? -quotient : quotient;
 
@@ -66,14 +75,22 @@ namespace Solutions.Medium
             if (quotient > int.MaxValue)
             {
                 result = int.MaxValue;
-            } else if (quotient < int.MinValue)
+            }
+            else if (quotient < int.MinValue)
             {
                 result = int.MinValue;
-            } else
+            }
+            else
             {
-                result = (int) quotient;
+                result = (int)quotient;
             }
 
+            return result;
+        }
+
+        public int Divide_RoundTwo(int dividend, int divisor)
+        {
+            int result = 0;
             return result;
         }
     }

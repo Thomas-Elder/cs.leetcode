@@ -74,6 +74,20 @@ namespace Solutions.Tests.Medium
             Assert.AreEqual(expected, result);
         }
 
+        [TestMethod]
+        public void Divide_WhenCalledWithExample5_ReturnsGivenResult()
+        {
+            // Arrange
+            int dividend = -2147483648;
+            int divisor = 2;
+            int expected = -1073741824;
+
+            // Act 
+            var result = _sut.Divide(dividend, divisor);
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
 
         public void Divide_RoundTwo_WhenCalledWithExample1_ReturnsGivenResult()
         {
@@ -126,6 +140,21 @@ namespace Solutions.Tests.Medium
             int dividend = -2147483648;
             int divisor = -1;
             int expected = 2147483647;
+
+            // Act 
+            var result = _sut.Divide_RoundTwo(dividend, divisor);
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Divide_RoundTwo_WhenCalledWithExample5_ReturnsGivenResult()
+        {
+            // Arrange
+            int dividend = -2147483648;
+            int divisor = 2;
+            int expected = -1073741824;
 
             // Act 
             var result = _sut.Divide_RoundTwo(dividend, divisor);

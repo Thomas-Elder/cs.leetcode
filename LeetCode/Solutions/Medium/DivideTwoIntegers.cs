@@ -88,6 +88,12 @@ namespace Solutions.Medium
             return result;
         }
 
+        /// <summary>
+        /// Divides the dividend by the divisor, returning a truncated quotient.
+        /// </summary>
+        /// <param name="dividend"></param>
+        /// <param name="divisor"></param>
+        /// <returns></returns>
         public int Divide_RoundTwo(int dividend, int divisor)
         {
             int result = 0;

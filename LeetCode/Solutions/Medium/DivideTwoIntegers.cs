@@ -10,7 +10,7 @@ namespace Solutions.Medium
     /// A class for solving LeetCode problem 29. Divide Two Integers
     /// </summary>
     /// Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
-    /// The integer division should truncate toward zero, which means losing its fractional part.For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
+    /// The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
     /// 
     /// Return the quotient after dividing dividend by divisor.
     /// 
@@ -96,8 +96,42 @@ namespace Solutions.Medium
         /// <returns></returns>
         public int Divide_RoundTwo(int dividend, int divisor)
         {
-            int result = 0;
-            return result;
+            // Handle edge cases.
+            if (dividend == int.MinValue && divisor == -1)
+            {
+                return int.MaxValue;
+            }
+
+            // Convert to longs, so we don't have to deal with the int.minValue edge case
+            long longDividend = dividend;
+            long longDivisor = divisor;
+
+            // Figure out if we need the answer to be negative.
+            bool negative = longDividend < 0 ^ longDivisor < 0 ? true : false;
+
+            // Reset the dividend/divisor to be positive
+            longDividend = longDividend < 0 ? -longDividend : longDividend;
+            longDivisor = longDivisor < 0 ? -longDivisor : longDivisor;
+
+            int quotient = 0;
+
+            // Time for some bitshift wizardry.
+            while (longDividend >= longDivisor)
+            {
+                int shift = 0;
+
+                
+                while (longDividend >= (longDivisor << shift))
+                {
+                    shift++;
+                }
+
+                quotient += (1 << (shift - 1));
+
+                longDividend -= longDivisor << (shift - 1);
+            }
+
+            return negative ? -quotient : quotient;
         }
     }
 }

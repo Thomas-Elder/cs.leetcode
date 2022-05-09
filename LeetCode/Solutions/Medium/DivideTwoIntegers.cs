@@ -91,12 +91,14 @@ namespace Solutions.Medium
         /// <summary>
         /// Divides the dividend by the divisor, returning a truncated quotient.
         /// </summary>
+        /// Uses bitshifting to cut down the number of times we need to loop in order to
+        /// calculate the quotient. 
         /// <param name="dividend"></param>
         /// <param name="divisor"></param>
         /// <returns></returns>
         public int Divide_RoundTwo(int dividend, int divisor)
         {
-            // Handle edge cases.
+            // Handle edge case.
             if (dividend == int.MinValue && divisor == -1)
             {
                 return int.MaxValue;
@@ -107,30 +109,85 @@ namespace Solutions.Medium
             long longDivisor = divisor;
 
             // Figure out if we need the answer to be negative.
+            // We'll set the sign on the way out.
             bool negative = longDividend < 0 ^ longDivisor < 0 ? true : false;
 
             // Reset the dividend/divisor to be positive
+            // Makes it easier to handle the actual calculation.
             longDividend = longDividend < 0 ? -longDividend : longDividend;
             longDivisor = longDivisor < 0 ? -longDivisor : longDivisor;
 
             int quotient = 0;
 
             // Time for some bitshift wizardry.
+            //
+            // EXAMPLE:
+            // LOOP 1:
+            // dividend 15, divisor 5
+            //
+            // LOOP 2:
+            // dividend 5, divisor 5
+            //
+            // LOOP 3:
+            // dividend 0, divisor 5
+            // End of the outer loop.
             while (longDividend >= longDivisor)
             {
                 int shift = 0;
 
-                
+                // Ok so here's the wizardry. We want to avoid looping over every multiple of 
+                // the divisor, because if it's 1, this will take dividend number of loops, and at least
+                // one possibility is a dividend of 2^31. 
+                // So here we shift the divisor left, which doubles it, until it's larger than dividend, 
+                // which means we get to a number bigger than the dividend in log time rather than linear.
+                // Once we've found how many times we need to shift to get bigger than the dividend, we're 
+                // in the ballpark of the solution.
+                //
+                // LOOP 1:
+                // 5 is b101 in binary. So the first test here is is 15 >= b101 (which is 5).
+                // It is so we increment shift then test is 15 >= b1010 (which is 10).
+                // It is so we increment shift then test is 15 >= b10100 (which is 20).
+                // And it is not, so the loop is over, and shift is 2.
+                //
+                // LOOP 2:
+                // When we get here the second time, the dividend is 5, and divisor is 5.
+                // So the first test is 5 >= b101
+                // It is so we increment shift, then test is 5 >= b1010
+                // And it is not, so the loop is over, and shift is 1.
                 while (longDividend >= (longDivisor << shift))
                 {
                     shift++;
                 }
 
+                // Here we add 1 left shifted by 1 less than the amount of times we needed to shift above.
+                // 
+                // LOOP 1:
+                // shift was 2, so we left shift 1 by 1, which gives us b10, or 2.
+                //
+                // LOOP 2:
+                // shift was 1, so we left shift 1 by 0, which gives us b1, or 1.
                 quotient += (1 << (shift - 1));
 
+                // Now we decrement the dividend by the divisor left shifted by 1 less than the amount of times
+                // we needed to shift above.
+                // 
+                // LOOP 1:
+                // shift was 2, so we left shift the divisor by 1, which gives us b1010, or 10. 
+                // So now longDividend is 5.
+                // 
+                // LOOP 2:
+                // shift was 1, so we left shift the divisor by 0, which gives us b101, or 5.
+                // So now longDividend is 0.
                 longDividend -= longDivisor << (shift - 1);
+
+                // The reason we're using (shift - 1) is that shifting doubles the number, so we're exponentially
+                // If in our example we just added 1 << shift to the quotient, in the first run through the
+                // outer loop, we'd add 4 to the quotient. And we'd subtract 20 from the dividend giving us -5.
+                // We double the divisor til it's bigger than the dividend, then go back a step, and run the 
+                // loop again.
             }
 
+            // We use the negative we set above to set the sign of the result.
             return negative ? -quotient : quotient;
         }
     }

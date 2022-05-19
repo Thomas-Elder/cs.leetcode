@@ -52,5 +52,18 @@ namespace Solutions.Tests.Medium
             // Assert
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void CheckPossibility_WhenCalledWithExample4_ReturnsTrue()
+        {
+            // Arrange
+            var input = new int[] { 5, 7, 1, 8 };
+
+            // Act
+            var result = _sut.CheckPossibility(input);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
     }
 }

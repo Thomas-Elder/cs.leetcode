@@ -41,13 +41,14 @@ namespace Solutions.Medium
                     if (nums[i] > nums[j])
                     {
                         changes++;
-                    }
-
-                    if (changes > 1)
-                    {
-                        return false;
-                    }
+                        break;
+                    }                    
                 }
+            }
+
+            if (changes > 1)
+            {
+                return false;
             }
 
             return true;

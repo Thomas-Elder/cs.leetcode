@@ -32,7 +32,49 @@ namespace Solutions.Easy
     {
         public string LongestCommonPrefix(string[] strs)
         {
-            return "false";
+            string result = "";
+
+            // get shortest string length
+            int shortestStringLength = strs[0].Length;
+
+            foreach(string str in strs)
+            {
+                if (str.Length < shortestStringLength) 
+                { 
+                    shortestStringLength = str.Length; 
+                }
+            }
+
+            // loop through indices up to that length, through each str
+            for (int i = 0; i < shortestStringLength; i++)
+            {
+                // Grab the ith char of the first string, we need all strings to have this char at the ith indice
+                char currentChar = strs[0][i];
+
+                // We'll use this later to test if we've made it through all strs
+                bool common = true;
+
+                foreach (string str in strs)
+                {
+                    // If this strs ith char doesn't == the currentChar, we can break, and we know we've
+                    // added as many chars to result as we can.
+                    if (str[i] != currentChar)
+                    {
+                        common = false;
+                        break;
+                    }
+                }
+
+                if (common)
+                {
+                    result = result + currentChar;
+                } else
+                {
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

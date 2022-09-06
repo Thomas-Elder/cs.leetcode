@@ -34,21 +34,30 @@ namespace Solutions.Medium
         {
             var changes = 0;
 
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 1; i < nums.Length; i++)
             {
-                for (int j = i + 1; j < nums.Length; j++)
+                // If this index is less than the previous index, we've got a decreasing situation
+                if (nums[i] < nums[i - 1])
                 {
-                    if (nums[i] > nums[j])
+                    // increment changes counter and if we're past 1, the array cannot be sorted in 
+                    // non-decreasing order with only 1 change. 
+                    changes++;
+                    if (changes > 1)
                     {
-                        changes++;
-                        break;
-                    }                    
-                }
-            }
+                        return false;
+                    }
 
-            if (changes > 1)
-            {
-                return false;
+                    // Ok but there's more to look at than just two elements. We need to look at previous and 
+                    // subsequent indicies before we can be sure we can make a change to make it non-decreasing. 
+                    // In short if the index prior to the two we're comparing above (i and i-1), and the index 
+                    // after those two, are both between i and i-1 in value, it's not possible to move just one
+                    // index and make it non-decreasing.
+                    // So if this situation exists, we return false. 
+                    if ((i > 1 && i < nums.Length - 1 && nums[i - 2] > nums[i] && nums[i + 1] < nums[i - 1]))
+                    {
+                        return false;
+                    }
+                }
             }
 
             return true;

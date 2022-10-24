@@ -72,5 +72,20 @@ namespace Solutions.Tests.Easy
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void AddBinaryStrings_WhenGivenConsecutiveCarriesStrings_ReturnsStringCorrectlyCalculated()
+        {
+            // Arrange
+            string inputA = "11";
+            string inputB = "11";
+            string expected = "110";
+
+            // Act
+            string actual = _addBinary.AddBinaryStrings(inputA, inputB);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

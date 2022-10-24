@@ -28,47 +28,51 @@ namespace Solutions.Easy
                 return "0";
             }
 
+            char [] aChars = a.ToCharArray();
+            char [] bChars = b.ToCharArray();
+
+            int resultLength = aChars.Length > bChars.Length ? aChars.Length : bChars.Length;
+
+            char [] resultChars = new char[resultLength];
+
+            int carry = 0;
+
             // Looping
             // We need to start at the end of both strings, working backward
-            string result = "";
-            string carry = "0";
+            int aIndex = aChars.Length - 1;
+            int bIndex = bChars.Length - 1;
+            int resultIndex = resultLength - 1;
 
-            while (a.Length > 0 || b.Length > 0)
+            while (aIndex >= 0 || bIndex >= 0)
             {
+                int sum = 0;
+                sum += aIndex >= 0 ? a[aIndex--] - '0' : 0;
+                sum += bIndex >= 0 ? b[bIndex--] - '0' : 0;
+                sum += carry;
 
-                string currA = a.Substring(a.Length - 1);
-                a = a.Remove(a.Length - 1);
-
-                string currB = b.Substring(b.Length - 1);
-                b = b.Remove(b.Length - 1);
-
-                if (currA == currB && currA == "1")
+                if (sum > 2)
                 {
-                    result = result.Insert(0, "0");
-                    carry = "1";
+                    resultChars[resultIndex--] = '1';
+                    carry = 1;
                 }
-
-                if (currA == currB && currA == "0")
+                else if (sum > 1) 
+                { 
+                    resultChars[resultIndex--] = '0';
+                    carry = 1;
+                } 
+                else
                 {
-                    if (carry == "1")
-                    {
-                        result = result.Insert(0, "1");
-                        carry = "0";
-                    }
-
-                    result = result.Insert(0, "0");
-                }
-
-                if (currA != currB)
-                {
-                    result = result.Insert(0, "1");
-                    carry = "0";
+                    resultChars[resultIndex--] = sum == 1 ? '1' : '0';
+                    carry = 0;
                 }
             }
-            
-            if (carry == "1")
+
+            string result = new string(resultChars);
+
+            if (carry == 1)
             {
-                result.Insert(0, "1");
+                // we'll need an extra digit on the front, this is easier when it's a string! 
+                result = result.Insert(0, "1");
             }
 
             return result;

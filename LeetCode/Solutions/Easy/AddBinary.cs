@@ -30,17 +30,14 @@ namespace Solutions.Easy
                 return "0";
             }
 
-            char [] aChars = a.ToCharArray();
-            char [] bChars = b.ToCharArray();
-
-            int resultLength = aChars.Length > bChars.Length ? aChars.Length : bChars.Length;
+            int resultLength = a.Length > b.Length ? a.Length : b.Length;
 
             char [] resultChars = new char[resultLength];
 
             int carry = 0;
          
-            int aIndex = aChars.Length - 1;
-            int bIndex = bChars.Length - 1;
+            int aIndex = a.Length - 1;
+            int bIndex = b.Length - 1;
             int resultIndex = resultLength - 1;
 
             // Looping
@@ -48,8 +45,19 @@ namespace Solutions.Easy
             while (aIndex >= 0 || bIndex >= 0)
             {
                 int sum = 0;
+
+                // OK this is the tricky bit. 
+                // First we check if the index is valid (ie >= 0).
+                // Then if it's valid we add the char - '0' to the sum.
+                // What happens here is when you index a string, it returns a char. When we subtract a char from a char, 
+                // this gets handled as if they were the ascii integer representations of that char.
+                // '0' is 48, and '1' is 49. 
+                // So when a[index] is '1' for example, and we subtract '0' from it, we're actually doing: 49 - 48 = 1,
+                // and adding that to the sum. And '0' - '0' = 0.
                 sum += aIndex >= 0 ? a[aIndex--] - '0' : 0;
                 sum += bIndex >= 0 ? b[bIndex--] - '0' : 0;
+
+                // Add any carry from a previous loop if needed.
                 sum += carry;
 
                 // If the sum is 3, we need to add 11, which is 1 now, and a carry

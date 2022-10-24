@@ -18,6 +18,8 @@ namespace Solutions.Easy
     /// 1 <= a.length, b.length <= 104
     /// a and b consist only of '0' or '1' characters.
     /// Each string does not contain leading zeros except for the zero itself.
+    /// 
+    /// Passing leetcode
     public class AddBinary
     {
         public string AddBinaryStrings(string a, string b)
@@ -36,13 +38,13 @@ namespace Solutions.Easy
             char [] resultChars = new char[resultLength];
 
             int carry = 0;
-
-            // Looping
-            // We need to start at the end of both strings, working backward
+         
             int aIndex = aChars.Length - 1;
             int bIndex = bChars.Length - 1;
             int resultIndex = resultLength - 1;
 
+            // Looping
+            // We need to start at the end of both strings, working backward
             while (aIndex >= 0 || bIndex >= 0)
             {
                 int sum = 0;
@@ -50,16 +52,19 @@ namespace Solutions.Easy
                 sum += bIndex >= 0 ? b[bIndex--] - '0' : 0;
                 sum += carry;
 
+                // If the sum is 3, we need to add 11, which is 1 now, and a carry
                 if (sum > 2)
                 {
                     resultChars[resultIndex--] = '1';
                     carry = 1;
                 }
+                // If the sum is 2, we need to add 10, which is 0 now, and a carry
                 else if (sum > 1) 
                 { 
                     resultChars[resultIndex--] = '0';
                     carry = 1;
                 } 
+                // If the sum is 0 or 1, we can just add that, and the carry is zero
                 else
                 {
                     resultChars[resultIndex--] = sum == 1 ? '1' : '0';
@@ -67,11 +72,13 @@ namespace Solutions.Easy
                 }
             }
 
+            // We need to convert to a string to return
             string result = new string(resultChars);
 
+            // If we've still got a carry, we need to insert it at the beginning, which is easier to do after
+            // converting the result to a string
             if (carry == 1)
             {
-                // we'll need an extra digit on the front, this is easier when it's a string! 
                 result = result.Insert(0, "1");
             }
 

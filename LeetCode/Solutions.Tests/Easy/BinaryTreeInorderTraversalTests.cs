@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solutions.Easy;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Solutions.Tests.Easy
 {
@@ -22,7 +24,7 @@ namespace Solutions.Tests.Easy
             var actual = _binaryTreeInorderTraversal.InorderTraversal(input);
 
             // Assert
-            Assert.IsNull(actual);
+            Assert.AreEqual(actual.Count, 0);
         }
 
         [TestMethod]
@@ -36,6 +38,29 @@ namespace Solutions.Tests.Easy
 
             // Assert
             Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void InOrderTraversal_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            TreeNode input = new TreeNode();
+            input.val = 1;
+            input.left = new TreeNode() { 
+                val = 3, 
+                left = new TreeNode() { 
+                    val = 2 
+                }, 
+                right = null 
+            };
+
+            IList<int> expected = new List<int>() { 1, 3, 2 };
+
+            // Act
+            var actual = _binaryTreeInorderTraversal.InorderTraversal(input);
+
+            // Assert
+            CollectionAssert.AreEquivalent(expected.ToArray(), actual.ToArray());
         }
     }
 }

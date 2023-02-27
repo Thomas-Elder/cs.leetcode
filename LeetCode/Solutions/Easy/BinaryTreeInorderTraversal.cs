@@ -30,18 +30,27 @@ namespace Solutions.Easy
     /// Follow up: Recursive solution is trivial, could you do it iteratively?
     public class BinaryTreeInorderTraversal
     {
+        private List<int> result; 
+
         public IList<int> InorderTraversal(TreeNode root)
         {
-            List<int> result = new List<int>();
+            result = new List<int>();
 
-            while(root != null)
-            {
-                root = root.left;
-            }
-
-            result.Add(root.val);
+            InOrderRecursive(root);
 
             return result;
+        }
+
+        public void InOrderRecursive(TreeNode root)
+        {
+            if(root == null)
+            {
+                return;
+            }
+
+            InOrderRecursive(root.left);
+            result.Add(root.val);
+            InOrderRecursive(root.right);
         }
     }
 

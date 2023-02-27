@@ -118,5 +118,56 @@ namespace Solutions.Tests.Easy
             // Assert
             CollectionAssert.AreEquivalent(expected.ToArray(), actual.ToArray());
         }
+
+        [TestMethod]
+        public void PostOrderTraversal_WhenPassedEmptyNode_ReturnsEmptyNode()
+        {
+            // Arrange
+            TreeNode input = null;
+
+            // Act
+            var actual = _binaryTree.PostOrderTraversal(input);
+
+            // Assert
+            Assert.AreEqual(actual.Count, 0);
+        }
+
+        [TestMethod]
+        public void PostOrderTraversal_WhenPassedNonEmptyNode_ReturnsNonEmptyNode()
+        {
+            // Arrange
+            TreeNode input = new TreeNode();
+
+            // Act
+            var actual = _binaryTree.PostOrderTraversal(input);
+
+            // Assert
+            Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void PostOrderTraversal_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            TreeNode input = new TreeNode();
+            input.val = 1;
+            input.left = new TreeNode()
+            {
+                val = 3,
+                left = new TreeNode()
+                {
+                    val = 2
+                },
+                right = null
+            };
+
+            IList<int> expected = new List<int>() { 3, 2, 1 };
+
+            // Act
+            var actual = _binaryTree.PostOrderTraversal(input);
+
+            // Assert
+            CollectionAssert.AreEquivalent(expected.ToArray(), actual.ToArray());
+        }
     }
 }

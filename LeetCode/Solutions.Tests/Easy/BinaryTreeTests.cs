@@ -169,5 +169,109 @@ namespace Solutions.Tests.Easy
             // Assert
             CollectionAssert.AreEquivalent(expected.ToArray(), actual.ToArray());
         }
+
+        [TestMethod]
+        public void IsSameTree_WhenPassedIdenticalTrees_ReturnsTrue()
+        {
+            // Arrange
+            TreeNode p = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2
+                },
+                right = new TreeNode()
+                {
+                    val = 3
+                }
+            };
+
+            TreeNode q = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2
+                },
+                right = new TreeNode()
+                {
+                    val = 3
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsSameTree(p, q);
+
+            // Assert
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void IsSameTree_WhenPassedDifferringTrees_ReturnsFalse()
+        {
+            // Arrange
+            TreeNode p = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 3
+                },
+                right = new TreeNode()
+                {
+                    val = 2
+                }
+            };
+
+            TreeNode q = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2
+                },
+                right = new TreeNode()
+                {
+                    val = 3
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsSameTree(p, q);
+
+            // Assert
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsSameTree_WhenPassedValuesOnDifferentSides_ReturnsFalse()
+        {
+            // Arrange
+            TreeNode p = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 1
+                }
+            };
+
+            TreeNode q = new TreeNode()
+            {
+                val = 1,
+                left = null,
+                right = new TreeNode()
+                {
+                    val = 1
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsSameTree(p, q);
+
+            // Assert
+            Assert.IsFalse(actual);
+        }
     }
 }

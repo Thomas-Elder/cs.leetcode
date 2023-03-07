@@ -104,6 +104,7 @@ namespace Solutions.Easy
         }
         #endregion
 
+        #region IsSameTree
         /// <summary>
         /// Tests to see if two trees are identical in structure and node values
         /// </summary>
@@ -121,15 +122,15 @@ namespace Solutions.Easy
         /// <param name="p"></param>
         /// <param name="q"></param>
         /// <returns></returns>
-        public virtual bool IsSameTreeRecursive(TreeNode p, TreeNode q)
+        public bool IsSameTreeRecursive(TreeNode p, TreeNode q)
         {
-            // 1. both empty
+            // First, if both are null, then this node is equal
             if (p == null && q == null)
             {
                 return true;
             }
 
-            // 2. both non-empty -> compare them
+            // Secondly, if they're not null, we need to compare their values, then recurse down both branches
             if (p != null && q != null)
             {
                 return (p.val == q.val
@@ -137,8 +138,50 @@ namespace Solutions.Easy
                         && IsSameTreeRecursive(p.right, q.right));
             }
 
-            // 3. one empty, one not -> false 
+            // We get here if only one node was null, and return false
             return false;
         }
+        #endregion
+
+        #region IsSymmetric
+        /// <summary>
+        /// Traverses a tree and returns true if is is symmetrical around the root
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public bool IsSymmetric(TreeNode root)
+        {
+            return IsSymmetricRecursive(root.left, root.right);
+        }
+
+        /// <summary>
+        /// Recursively traverses two branches in parallel, returns true if the left.left == right.right
+        /// for all nodes in the tree.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public bool IsSymmetricRecursive(TreeNode left, TreeNode right)
+        {
+            // If both are null, that's symmetric
+            if (left == null && right == null)
+            {
+                return true;
+            }
+
+            // Here if either is null, we know the other isn't (from the previous check)
+            // so it's not symmetric
+            if (left == null || right == null)
+            {
+                return false;
+            }
+
+            // Now check the values, and pass the leftleft with the rightright, and
+            // the leftright with the rightleft!
+            return (left.val == right.val
+                && IsSymmetricRecursive(left.left, right.right) 
+                && IsSymmetricRecursive(left.right, right.left));
+        }
+        #endregion
     }
 }

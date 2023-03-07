@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solutions.Easy;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Solutions.Easy;
 
 namespace Solutions.Tests.Easy
 {
@@ -18,6 +17,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void InorderTraversal_WhenPassedEmptyNode_ReturnsEmptyNode()
         {
             // Arrange
@@ -31,6 +31,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void InorderTraversal_WhenPassedNonEmptyNode_ReturnsNonEmptyNode()
         {
             // Arrange
@@ -44,6 +45,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void InOrderTraversal_WhenPassedExampleOne_ReturnsExpectedResult()
         {
             // Arrange
@@ -69,6 +71,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PreOrderTraversal_WhenPassedEmptyNode_ReturnsEmptyNode()
         {
             // Arrange
@@ -82,6 +85,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PreOrderTraversal_WhenPassedNonEmptyNode_ReturnsNonEmptyNode()
         {
             // Arrange
@@ -95,6 +99,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PreOrderTraversal_WhenPassedExampleOne_ReturnsExpectedResult()
         {
             // Arrange
@@ -120,6 +125,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PostOrderTraversal_WhenPassedEmptyNode_ReturnsEmptyNode()
         {
             // Arrange
@@ -133,6 +139,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PostOrderTraversal_WhenPassedNonEmptyNode_ReturnsNonEmptyNode()
         {
             // Arrange
@@ -146,6 +153,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Traversal")]
         public void PostOrderTraversal_WhenPassedExampleOne_ReturnsExpectedResult()
         {
             // Arrange
@@ -171,6 +179,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Shape")]
         public void IsSameTree_WhenPassedIdenticalTrees_ReturnsTrue()
         {
             // Arrange
@@ -208,6 +217,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Shape")]
         public void IsSameTree_WhenPassedDifferringTrees_ReturnsFalse()
         {
             // Arrange
@@ -245,6 +255,7 @@ namespace Solutions.Tests.Easy
         }
 
         [TestMethod]
+        [TestCategory("Shape")]
         public void IsSameTree_WhenPassedValuesOnDifferentSides_ReturnsFalse()
         {
             // Arrange
@@ -272,6 +283,107 @@ namespace Solutions.Tests.Easy
 
             // Assert
             Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void IsSymmetric_WhenPassedNullNode_ReturnsTrue()
+        {
+            // Arrange
+            var input = new TreeNode();
+
+            // Act
+            var result = _binaryTree.IsSymmetric(input);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void IsSymmetric_WhenPassedSingleNodeWithValue_ReturnsTrue()
+        {
+            // Arrange
+            var input = new TreeNode() { val = 1 };
+
+            // Act
+            var result = _binaryTree.IsSymmetric(input);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void IsSymmetric_WhenPassedSymmetricTree_ReturnsTrue()
+        {
+            // Arrange
+            var input = new TreeNode() {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2,
+                    left = new TreeNode()
+                    {
+                        val = 3
+                    },
+                    right = new TreeNode()
+                    {
+                        val = 4
+                    }
+                },
+                right = new TreeNode()
+                {
+                    val = 2,
+                    left= new TreeNode()
+                    {
+                        val = 4
+                    },
+                    right= new TreeNode()
+                    {
+                        val = 3
+                    }
+                }
+            };
+
+            // Act
+            var result = _binaryTree.IsSymmetric(input);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void IsSymmetric_WhenPassedAsymmetricTree_ReturnsFalse()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2,
+                    right = new TreeNode()
+                    {
+                        val = 3
+                    }
+                },
+                right = new TreeNode()
+                {
+                    val = 2,
+                    right = new TreeNode()
+                    {
+                        val = 3
+                    }
+                }
+            };
+
+            // Act
+            var result = _binaryTree.IsSymmetric(input);
+
+            // Assert
+            Assert.IsFalse(result);
         }
     }
 }

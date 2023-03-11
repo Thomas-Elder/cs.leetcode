@@ -385,5 +385,78 @@ namespace Solutions.Tests.Easy
             // Assert
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void MaxDepth_WhenPassedNullNode_ReturnsOne()
+        {
+            // Arrange
+            var input = new TreeNode();
+            var expected = 1;
+
+            // Act
+            var result = _binaryTree.MaxDepth(input);
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void MaxDepth_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 3,
+                left = new TreeNode()
+                {
+                    val = 9,
+                },
+                right = new TreeNode()
+                {
+                    val = 20,
+                    left = new TreeNode()
+                    {
+                        val = 15
+                    },
+                    right = new TreeNode()
+                    {
+                        val = 7
+                    }
+                }
+            };
+
+            var expected = 3;
+
+            // Act
+            var result = _binaryTree.MaxDepth(input);
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        [TestCategory("Shape")]
+        public void MaxDepth_WhenPassedExampleTwo_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 1,
+                right = new TreeNode()
+                {
+                    val = 2
+                }
+            };
+
+            var expected = 2;
+
+            // Act
+            var result = _binaryTree.MaxDepth(input);
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
     }
 }

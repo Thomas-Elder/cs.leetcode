@@ -183,5 +183,32 @@ namespace Solutions.Easy
                 && IsSymmetricRecursive(left.right, right.left));
         }
         #endregion
+
+        #region MaxDepth
+        /// <summary>
+        /// Gets the maximum depth of a given binary tree.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MaxDepth(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;
+            } else
+            {
+                int countLeft = MaxDepth(root.left);
+                int countRight = MaxDepth(root.right);
+
+                if (countLeft > countRight)
+                {
+                    return countLeft + 1;
+                } else
+                {
+                    return countRight + 1;
+                }
+            }
+        }
+        #endregion
     }
 }

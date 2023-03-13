@@ -66,9 +66,9 @@ namespace Solutions.Easy
             }
 
             result.Add(root.val);
-            
+
             PreOrderRecursive(root.left);
-            
+
             PreOrderRecursive(root.right);
         }
         #endregion
@@ -179,7 +179,7 @@ namespace Solutions.Easy
             // Now check the values, and pass the leftleft with the rightright, and
             // the leftright with the rightleft!
             return (left.val == right.val
-                && IsSymmetricRecursive(left.left, right.right) 
+                && IsSymmetricRecursive(left.left, right.right)
                 && IsSymmetricRecursive(left.right, right.left));
         }
         #endregion
@@ -208,6 +208,42 @@ namespace Solutions.Easy
                     return countRight + 1;
                 }
             }
+        }
+        #endregion
+
+        #region SortedArrayToBST
+        /// <summary>
+        /// Converts a sorted array of integers to a height-balanced binary tree
+        /// </summary>
+        /// A height balanced binary tree is one where the depth of the two sub trees of any node
+        /// never differs by more than one.
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public TreeNode SortedArrayToBST(int[] nums)
+        {
+            int start = 0;
+            int end = nums.Length - 1;
+
+            return SortedArrayToBSTRecursive(nums, start, end);
+        }
+
+        public TreeNode SortedArrayToBSTRecursive(int[] nums, int start, int end)
+        {
+            // Terminating case
+            if (start > end) { return null; }
+
+            int mid = (start + end) / 2;
+
+            // The mid point is going to be a new root
+            TreeNode root = new TreeNode() { val = nums[mid]};
+
+            // Recure on the left node 
+            root.left = SortedArrayToBSTRecursive(nums, start, mid - 1);
+
+            // And right node
+            root.right = SortedArrayToBSTRecursive(nums, mid + 1, end);
+
+            return root;
         }
         #endregion
     }

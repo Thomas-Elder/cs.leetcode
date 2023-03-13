@@ -458,5 +458,40 @@ namespace Solutions.Tests.Easy
             // Assert
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void SortedArrayToBST_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new int [] { -10, -3, 0, 5, 9 };
+
+            var expected = new TreeNode()
+            {
+                val = 0,
+                left = new TreeNode()
+                {
+                    val = -10,
+                    left = new TreeNode()
+                    {
+                        val = -3
+                    }
+                },
+                right = new TreeNode()
+                {
+                    val = 5,
+                    left = new TreeNode()
+                    {
+                        val = 9
+                    }
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.SortedArrayToBST(input);
+
+            // Assert
+            Assert.AreEqual(expected.val, actual.val);
+            Assert.AreEqual(expected.left.val, actual.left.val);
+        }
     }
 }

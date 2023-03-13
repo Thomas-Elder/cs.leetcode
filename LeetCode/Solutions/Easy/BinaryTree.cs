@@ -246,5 +246,45 @@ namespace Solutions.Easy
             return root;
         }
         #endregion
+
+        #region IsBalanced
+        /// <summary>
+        /// Given a binary tree, returns whether it is height-balanced
+        /// </summary>
+        /// A height balanced binary tree is one where the depth of the two sub trees of any node
+        /// never differs by more than one.
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public bool IsBalanced(TreeNode root)
+        {
+            int height = Height(root);
+            if (height < 0) { return false; }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Returns the height of a height-balanced binary tree.
+        /// </summary>
+        /// If the tree is not height balanced, returns -1.
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int Height(TreeNode root)
+        {
+            if (root == null) { return 0; }
+
+            // Recurr down the left branch
+            int leftHeight = Height(root.left);
+            // If at any point we've already returned -1, the tree is not balanced
+            if (leftHeight == -1) { return -1; }
+
+            int rightHeight = Height(root.right);
+            if (rightHeight == -1) { return -1; }
+
+            if (Math.Abs(leftHeight - rightHeight) > 1) { return -1; }
+
+            return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+        }
+        #endregion
     }
 }

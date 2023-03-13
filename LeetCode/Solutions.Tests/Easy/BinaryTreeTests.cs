@@ -493,5 +493,101 @@ namespace Solutions.Tests.Easy
             Assert.AreEqual(expected.val, actual.val);
             Assert.AreEqual(expected.left.val, actual.left.val);
         }
+
+        [TestMethod]
+        public void IsBalanced_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 3,
+                left = new TreeNode()
+                {
+                    val = 9
+                },
+                right = new TreeNode()
+                {
+                    val = 20,
+                    left = new TreeNode()
+                    {
+                        val = 15
+                    },
+                    right = new TreeNode()
+                    {
+                        val = 7
+                    }
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsBalanced(input);
+
+            // Assert
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void IsBalanced_WhenPassedExampleTwo_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 1,
+                left = new TreeNode()
+                {
+                    val = 2,
+                    left = new TreeNode()
+                    {
+                        val = 3,
+                        left = new TreeNode()
+                        {
+                            val = 4
+                        },
+                        right = new TreeNode()
+                        {
+                            val = 4
+                        }
+                    },
+                    right = new TreeNode()
+                    {
+                        val = 3
+                    }
+                },
+                right = new TreeNode()
+                {
+                    val = 2
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsBalanced(input);
+
+            // Assert
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsBalanced_WhenPassedExampleFour_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 1,
+                right = new TreeNode()
+                {
+                    val = 2,
+                    right = new TreeNode()
+                    {
+                        val = 3
+                    }
+                }
+            };
+
+            // Act
+            var actual = _binaryTree.IsBalanced(input);
+
+            // Assert
+            Assert.IsFalse(actual);
+        }
     }
 }

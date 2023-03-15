@@ -589,5 +589,71 @@ namespace Solutions.Tests.Easy
             // Assert
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void MinDepth_WhenPassedExampleOne_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 3,
+                left = new TreeNode()
+                {
+                    val = 9
+                },
+                right = new TreeNode()
+                {
+                    val = 20,
+                    left = new TreeNode()
+                    {
+                        val = 15
+                    },
+                    right = new TreeNode()
+                    {
+                        val = 7
+                    }
+                }
+            };
+            var expected = 2;
+
+            // Act
+            var actual = _binaryTree.MinDepth(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinDepth_WhenPassedExampleTwo_ReturnsExpectedResult()
+        {
+            // Arrange
+            var input = new TreeNode()
+            {
+                val = 2,
+                right = new TreeNode()
+                {
+                    val = 3,
+                    right = new TreeNode()
+                    {
+                        val = 4,
+                        right = new TreeNode()
+                        {
+                            val = 5,
+                            right = new TreeNode()
+                            {
+                                val = 6
+                            }
+                        }
+                    }
+                }
+            };
+            var expected = 5;
+
+            // Act
+            var actual = _binaryTree.MinDepth(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

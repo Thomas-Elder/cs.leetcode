@@ -286,5 +286,40 @@ namespace Solutions.Easy
             return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
         }
         #endregion
+
+        #region MinDepth
+        /// <summary>
+        /// Returns the number of nodes along the shortest path from the root node down to the nearest leaf node.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MinDepth(TreeNode root)
+        {
+            if (root == null) { return 0; }
+
+            // Base case for recursion
+            // If left and right nodes are null, we're on a leaf node.
+            // We return 1, to add 1 to the depth count for this node.
+            if (root.left == null && root.right == null) { return 1; }
+
+            // If the left node is null, then we need to keep recurring down
+            // the right branch.
+            if (root.left == null)
+            {
+                return MinDepth(root.right) + 1;
+            }
+
+            // If the right node is null, then we need to keep recurring down
+            // the left branch.
+            if (root.right == null)
+            {
+                return MinDepth(root.left) + 1;
+            }
+
+            // If there are left and right nodes, return the smaller of the minDepths
+            // of the left and right, plus one to account for this root.
+            return Math.Min(MinDepth(root.left), MinDepth(root.right)) + 1;
+        }
+        #endregion
     }
 }

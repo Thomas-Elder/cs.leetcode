@@ -115,5 +115,35 @@ namespace Solutions.Tests.Hard
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StepsToChange_WhenGivenPasswordTooLong_Returns2()
+        {
+            // Arrange
+            StrongPasswordChecker strongPasswordChecker = new StrongPasswordChecker();
+            int expected = 2;
+            string password = "ABABABABABABABABABAB1";
+
+            // Act 
+            int actual = strongPasswordChecker.StepsToChange(password);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StepsToChange_WhenGivenPasswordTooLong_Returns8()
+        {
+            // Arrange
+            StrongPasswordChecker strongPasswordChecker = new StrongPasswordChecker();
+            int expected = 8;
+            string password = "bbaaaaaaaaaaaaaaacccccc";
+
+            // Act 
+            int actual = strongPasswordChecker.StepsToChange(password);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

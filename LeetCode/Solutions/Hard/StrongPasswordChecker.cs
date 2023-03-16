@@ -43,9 +43,7 @@ namespace Solutions.Hard
         /// <param name="password"></param>
         /// <returns></returns>
         public int StepsToChange(string password)
-        {
-            int result = 0;
-            
+        {           
             // Basic flags
             bool upper = false;
             bool lower = false;
@@ -72,10 +70,10 @@ namespace Solutions.Hard
                     // a three some by inserting some characters.
                     if (currentCharCount > 2)
                     {
-                        // We can get the number of inserts required to split up any 3-somes by dividing by two,
+                        // We can get the number of inserts required to split up any 3-somes by dividing by 3,
                         // and taking the floor of the result... 
-                        // (eg 7 / 2 = 3.blahblah, so we need 3 inserts.
-                        repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 2.0);
+                        // (eg 7 / 3 = 2.blahblah, so we need 2 replacements.
+                        repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 3.0);
                     }
 
                     // Either way we now reset count and set char to this c.
@@ -97,11 +95,14 @@ namespace Solutions.Hard
             // If the last 3+ characters were identical then we need to handle the splitting of them here:
             if (currentCharCount > 2)
             {
-                repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 2.0);
+                repeatingCharacterSeparators += (int)Math.Floor(currentCharCount / 3.0);
             }
 
-            // How many characters required to reach the length requirement...
+            // How many characters required to reach the min length requirement...
             int lengthRequired = 6 - passwordChar.Length;
+
+            // How many deletions for the max length requirement
+            int lengthReduction = passwordChar.Length > 20 ? passwordChar.Length - 20 : 0;
 
             // How many characters required to meet the special character requirement... 
             int charactersRequired = 0;
@@ -109,11 +110,12 @@ namespace Solutions.Hard
             charactersRequired += lower ? 0 : 1;
             charactersRequired += number ? 0 : 1;
 
-            var toAdd = Math.Max(charactersRequired, Math.Max(lengthRequired, repeatingCharacterSeparators));
-
-            result += toAdd;
-
-            return result;
+            // Now we know how many characters we need for each requirement, and since adding one 
+            // character can meet all the requirements (ie it could increase the length, break up 
+            // repeating characters, and be a required character type), we just need the 
+            // maximum required characters from the different requirements. 
+            // Aaaaand add
+            return Math.Max(charactersRequired, Math.Max(lengthRequired, repeatingCharacterSeparators)) + lengthReduction;
         }
     }
 }

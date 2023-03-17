@@ -321,5 +321,42 @@ namespace Solutions.Easy
             return Math.Min(MinDepth(root.left), MinDepth(root.right)) + 1;
         }
         #endregion
+
+        #region HasPathSum
+        /// <summary>
+        /// Returns if a root-to-leaf summation exists int the given tree which equals the given integer.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="sum"></param>
+        /// <returns></returns>
+        public bool HasPathSum(TreeNode root, int sum)
+        {
+            // Handles the empty node.
+            if (root == null)
+            {
+                return false;
+            }
+
+            // If both branches are null, we're at a leaf, and because we're working backwards to 
+            // the target, this will only return true, if the sum of all the nodes traversed to get 
+            // here is equal to the target.
+            if (root.left == null && root.right == null)
+            {
+                return sum == root.val;
+            }
+
+            // Recursively call the left/right branches, passing in the current sum, minus the current
+            // value of this node. 
+            // Example, the target is 8, the first node's value is 2. We pass 6 into the left and 
+            // right branches off this node.
+            // On the left it's a leaf, has no left/right branch, so we return sum == val (6 == 4), 
+            // which is false. 
+            // On the right it's also a leaf, but the value is 6, so we return 6 == 6, true. 
+            // We get back up to the first return statement, and the left call is false, but the 
+            // right one is true, so we return true. 
+            // The path taken to get the sum is root + right (2 + 6).
+            return HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val);
+        }
+        #endregion
     }
 }

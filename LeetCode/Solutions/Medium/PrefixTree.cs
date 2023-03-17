@@ -41,9 +41,11 @@ namespace Solutions.Medium
     /// At most 3 * 104 calls in total will be made to insert, search, and startsWith.
     public class PrefixTree
     {
+        private List<string> _words;
+
         public PrefixTree()
         {
-
+            _words = new List<string>();
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace Solutions.Medium
         /// <param name="word"></param>
         public void Insert(string word)
         {
-
+            _words.Add(word);
         }
 
         /// <summary>
@@ -62,7 +64,10 @@ namespace Solutions.Medium
         /// <returns></returns>
         public bool Search(string word)
         {
+            if (_words.Contains(word))
+                return true;
 
+            return false;
         }
 
         /// <summary>
@@ -72,7 +77,15 @@ namespace Solutions.Medium
         /// <returns></returns>
         public bool StartsWith(string prefix)
         {
+            foreach (string word in _words)
+            {
+                if (word.StartsWith(prefix))
+                {
+                    return true;
+                }
+            }
 
+            return false;
         }
     }
 }

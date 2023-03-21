@@ -61,15 +61,15 @@ namespace Solutions.Easy
                     }
 
                     j++;
-                }
-
-                // If we've not gotten through the whole needle
-                if (j < needle.Length - 1)
+                } else
                 {
-                    // And if our haystack isn't containing the needle
-                    if (haystack[i] != needle[j])
+                    // If they don't match, and j > 0, it means this section does not match
+                    // the needle. We need to reset j, and move i back to character after this
+                    // pattern began, in case the partial pattern overlaps. 
+                    if (j > 0)
                     {
-                        result = -1;
+                        i = i - j;
+                        j = 0;
                     }
                 }
 

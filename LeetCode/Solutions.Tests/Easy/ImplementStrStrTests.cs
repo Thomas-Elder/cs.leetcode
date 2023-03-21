@@ -108,5 +108,37 @@ namespace Solutions.Tests.Easy
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StrStr_WhenCalledWithExampleOne_Returns0()
+        {
+            // Arrange
+            string inputHaystack = "sadbutsad";
+            string inputNeedle = "sad";
+
+            int expected = 0;
+
+            // Act
+            var actual = _implementStrStr.StrStr(inputHaystack, inputNeedle);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StrStr_WhenCalledWithExample63_Returns4()
+        {
+            // Arrange
+            string inputHaystack = "mississippi";
+            string inputNeedle = "issip";
+
+            int expected = 4;
+
+            // Act
+            var actual = _implementStrStr.StrStr(inputHaystack, inputNeedle);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

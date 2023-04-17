@@ -57,5 +57,20 @@ namespace Solutions.Tests.Medium
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Convert_WhenGivenExampleSeven_ReturnsExpectedAnswer()
+        {
+            // Arrange
+            var inputString = "AB";
+            var inputInt = 1;
+            var expected = "AB";
+
+            // Act
+            var actual = _zigZagConversion.Convert(inputString, inputInt);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

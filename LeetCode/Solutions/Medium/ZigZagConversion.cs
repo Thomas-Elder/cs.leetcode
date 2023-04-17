@@ -53,12 +53,49 @@ namespace Solutions.Medium
         public string Convert(string s, int numRows)
         {
             // Trivial case of string length 1
-            if (s.Length == 1)
+            if (numRows == 1)
             {
                 return s;
             }
 
-            return s;
+            // Create jagged array, a list of StringBuilders makes it easier to add and convert back to string later
+            List<StringBuilder> rows = new List<StringBuilder>();
+
+            for (int i  = 0; i < numRows; i++)
+            {
+                rows.Add(new StringBuilder());
+            }
+
+            // Fill array
+            // Track current row, so we know if we're going up or down
+            int currentRow = 0;
+            bool goingDown = false;
+
+            foreach (char c in s)
+            {
+                rows[currentRow].Append(c);
+
+                // Figure out if we need to go down, or back up
+                // If we're at the top, or the bottom, we need to invert our goingDown flag
+                if (currentRow == 0 || currentRow == numRows - 1)
+                {
+                    goingDown = !goingDown;
+                }
+
+                // Then based on that, we either increment or decrement currentRow
+                currentRow += goingDown ? 1 : -1;
+            }
+
+            // Convert array to string
+            var result = new StringBuilder();
+
+            foreach (StringBuilder row in rows)
+            {
+                result.Append(row);
+            }
+
+            // Return
+            return result.ToString();
         }
     }
 }

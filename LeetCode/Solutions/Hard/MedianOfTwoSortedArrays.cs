@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Solutions.Hard
 {
     /// <summary>
@@ -34,9 +36,78 @@ namespace Solutions.Hard
         /// <returns></returns>
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
-            double result = 0.00;
+            // figure out if the total length will be odd or even. 
+            int totalLength = nums1.Length + nums2.Length;
 
-            return result;
+            if (totalLength % 2 == 0)
+            {
+                // if it's even we need to find the average of the elements at totalLength / 2
+                // and (totalLength / 2) + 1
+                int tempLength = (totalLength / 2) + 1;
+
+                int i = 0;
+                int j = 0;
+                int k = 0;
+                double [] temp = new double[tempLength];
+
+                while (i < (totalLength / 2) + 1)
+                {
+                    if (j < nums1.Length && k < nums2.Length)
+                    {
+                        if ((nums1[j] < nums2[k]))
+                        {
+                            temp[i++] = nums1[j++];
+                        } else
+                        {
+                            temp[i++] = nums2[k++];
+                        }
+                    } else if (j < nums1.Length)
+                    {
+                        temp[i++] = nums1[j++];
+                    } else
+                    {
+                        temp[i++] = nums2[k++];
+                    }
+                }
+
+                return (temp[tempLength - 1] + temp[tempLength - 2]) / 2;
+            }
+            else
+            {
+                // if it's odd, we just need to take the ((totalLength / 2).ceiling) element 
+                // of the combined sorted array
+                int tempLength = (totalLength / 2) + 1;
+
+                int i = 0;
+                int j = 0;
+                int k = 0;
+                int[] temp = new int[tempLength];
+
+                while (i < (totalLength / 2) + 1)
+                {
+                    if (j < nums1.Length && k < nums2.Length)
+                    {
+                        if ((nums1[j] < nums2[k]))
+                        {
+                            temp[i++] = nums1[j++];
+                        }
+                        else
+                        {
+                            temp[i++] = nums2[k++];
+                        }
+                    }
+                    else if (j < nums1.Length)
+                    {
+                        temp[i++] = nums1[j++];
+                    }
+                    else
+                    {
+                        temp[i++] = nums2[k++];
+                    }
+                }
+
+                return temp[tempLength - 1];
+            }
         }
     }
 }

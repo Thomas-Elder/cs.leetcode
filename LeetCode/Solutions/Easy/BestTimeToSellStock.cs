@@ -3,6 +3,7 @@ using System.Transactions;
 using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Solutions.Easy
 {
@@ -33,18 +34,21 @@ namespace Solutions.Easy
         public int MaxProfit(int[] prices)
         {
             var result = 0;
+            var minimum = prices[0];
 
-            for (int i = 0; i < prices.Length; i++)
+            for (int i = 1; i < prices.Length; i++)
             {
-                for (int j = i + 1; j < prices.Length; j++)
+                var currentPrice = prices[i];
+
+                if (currentPrice < minimum)
                 {
-                    if (prices[i] > prices[j]) { continue; }
+                    minimum = currentPrice;
+                }
+                else
+                {
+                    var currentProfit = currentPrice - minimum;
 
-                    if (prices[i] == prices[j]) { continue; }
-
-                    var profit = prices[j] - prices[i];
-
-                    if (profit > result) { result = profit; }
+                    if (currentProfit > result) { result = currentProfit; }
                 }
             }
 
